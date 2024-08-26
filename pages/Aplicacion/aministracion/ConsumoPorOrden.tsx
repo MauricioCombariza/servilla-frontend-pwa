@@ -56,6 +56,7 @@ const ConsumoPorOrden = ({handleCancel, send, handleInitial}: {handleCancel: () 
       setLoading(true);
   
       // Consulta sin alias en SQL
+      // Escribo esto como referencia para que veas cómo se vería la consulta
       const { data, error } = await supabase
         .from('suborders_summary_by_order_and_alias')
         .select('orden, alias, total_quantity') // No uses 'as cantidad' aquí
