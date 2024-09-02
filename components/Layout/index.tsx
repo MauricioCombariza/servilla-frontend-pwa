@@ -1,9 +1,18 @@
 import React from "react";
+import type { Metadata, Viewport } from "next";
 // import { GoogleTagManager } from '@next/third-parties/google';
 
 interface Props {
   children: React.ReactNode;
 }
+
+export const metadata: Metadata = {
+  manifest: '/manifest.json',
+  title: 'Servilla S.A.S - Solución logística',
+  description: 'Empresa dedicada al envío de paquetes y documentos, en Colombia, desde 1974',
+  keywords: 'paquetería, envíos, logística, mensajería, distribución',
+  themeColor: '#000000',
+};
 
 interface GTMConfig {
   gtmId: string;
@@ -17,16 +26,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <div className='flex flex-col mt-24 lg:mt-20'>
-      {/* <GoogleTagManager {...gtmConfig} /> */}
       
-        {/* <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${gtmConfig}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
-        </noscript> */}
         {children}
       
     </div>
@@ -34,3 +34,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 }
 
 export { Layout };
+
+export const viewport: Viewport = {
+  themeColor: "whiteSer",
+};
