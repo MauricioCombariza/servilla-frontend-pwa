@@ -1,6 +1,5 @@
 import React from "react";
 import type { Metadata, Viewport } from "next";
-// import { GoogleTagManager } from '@next/third-parties/google';
 
 interface Props {
   children: React.ReactNode;
@@ -26,14 +25,12 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <div className='flex flex-col mt-24 lg:mt-20'>
-      
-        {children}
-      
+      {children}
     </div>
   );
 }
 
-export { Layout };
+export {Layout};
 
 export const viewport: Viewport = {
   themeColor: "whiteSer",

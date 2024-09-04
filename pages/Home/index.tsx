@@ -32,6 +32,10 @@ function HomePage(): JSX.Element {
                     fill
                     style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    // priority
+                    loading='lazy'
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
                   />
                 </div>
               </div>
@@ -44,6 +48,10 @@ function HomePage(): JSX.Element {
                     fill
                     style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    // priority
+                    loading='lazy'
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
                   />
                 </div>
               </div>
@@ -68,6 +76,10 @@ function HomePage(): JSX.Element {
                   fill
                   style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  // priority
+                  loading='lazy'
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
                 />
                 </div>
               </div>
@@ -80,6 +92,10 @@ function HomePage(): JSX.Element {
                   fill
                   style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  // priority
+                  loading='lazy'
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
                 />
               </div>
               </div>
@@ -101,7 +117,10 @@ function HomePage(): JSX.Element {
                   fill
                   style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority  // Añadir la propiedad priority
+                  // priority  // Añadir la propiedad priority
+                  loading='lazy'
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
                 />
               </div>
             </div>
@@ -114,7 +133,10 @@ function HomePage(): JSX.Element {
                   fill
                   style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority  // Añadir la propiedad priority
+                  // priority  // Añadir la propiedad priority
+                  loading='lazy'
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
                 />
               </div>
             </div>
@@ -135,7 +157,10 @@ function HomePage(): JSX.Element {
                 fill
                 style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                priority 
+                loading='lazy'
+                // priority
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==" 
               />
             </div>
             <div className="hidden md:block w-full h-auto">
@@ -146,7 +171,10 @@ function HomePage(): JSX.Element {
                 fill
                 style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                priority 
+                loading='lazy'
+                // priority
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
               />
             </div>
             <div className="absolute inset-0 z-20 flex justify-end items-end bg-black bg-opacity-50 text-white p-2 sm:justify-center sm:items-center sm:opacity-0 sm:hover:opacity-100">
@@ -167,7 +195,10 @@ function HomePage(): JSX.Element {
                 fill
                 style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                priority
+                loading='lazy'
+                // priority
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
               />
             </div>
             <div className="hidden md:block w-full h-auto">
@@ -178,7 +209,10 @@ function HomePage(): JSX.Element {
                 fill
                 style={{ objectFit: "cover" }}  // Esto asegurará que la imagen cubra el área de su contenedor
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                priority
+                loading='lazy'
+                // priority
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
               />
             </div>
             <div className="absolute inset-0 flex justify-end items-end bg-black bg-opacity-50 text-white p-2 sm:justify-center sm:items-center sm:opacity-0 sm:hover:opacity-100">
@@ -195,8 +229,11 @@ function HomePage(): JSX.Element {
                 alt="logo"
                 width={800}
                 height={600}
-                priority
+                // priority
+                loading='lazy'
                 objectFit='cover'
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
            />
           </h1>
           <h3 className="text-center">
