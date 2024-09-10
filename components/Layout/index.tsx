@@ -27,7 +27,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   };
 
   return (
-    <div className='flex flex-col mt-28 lg:mt-40'>
+    <div className='flex flex-col mt-28 lg:mt-32'>
       {children}
       <GoogleAnalytics gaId={gtmConfig.gtmAnalytics}/>
       <GoogleTagManager gtmId={gtmConfig.gtmId} />
