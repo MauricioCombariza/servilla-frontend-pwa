@@ -6,6 +6,7 @@ import ModulosAdmon from './aministracion/ModulosAdmon';
 import MenuInventario from './aministracion/MenuInventario';
 import Modulos from './base/Modulos';
 import Ingreso from './base/Ingreso';
+import IngresarProducto from './aministracion/IngresarProducto';
 import Ordenes from './aministracion/Ordenes';
 import Datos from './mensajeros/Datos';
 import Nequi from './mensajeros/Nequi';
@@ -227,6 +228,7 @@ const YourPage = () => {
 
             {current.matches('modulos') && <Modulos send={send} setRol={setRol} setUsername={setUsername} handleInitial={handleInitial} setCodMen={setCodMen}/>}
             {current.matches('ingreso') && <Ingreso send={send} handleInitial={handleInitial} cod_men={cod_men} password={password} setUsername={setUsername} setCodMen={setCodMen} setPassword={setPassword} />}     
+            {current.matches('ingresar_producto') && <IngresarProducto handleInitial={handleInitial} send={send} handleCancel={handleCancel} />}
             {current.matches('ingreso_admon') && <IngresoAdmon send={send} handleInitial={handleInitial} setUsername={setUsername} setRol={setRol} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />}
             {current.matches('cambio_contrasena') && <CambioContrasena handleInitial={handleInitial} />} 
             {current.matches('ordenes') && <Ordenes order={order} id_cliente={id_cliente} handleInitial={handleInitial} setIdCliente={setIdCliente} setOrder={setOrder} handleFileChange={handleFileChange} handleUploadOrders={handleUploadOrdersBase} handleCancel={handleCancel} />}

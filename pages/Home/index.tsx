@@ -14,7 +14,7 @@ function HomePage(): JSX.Element {
         ¿Cansado de preocuparte por la logística?
       </h1>
       <p className="text-lg text-white">
-        Déjala en nuestras manos. Ofrecemos soluciones escalables y eficientes que te permiten enfocarte en lo que realmente importa: hacer crecer tu negocio.
+      Somos una empresa logística que se encarga de almacenar, empacar y enviar los productos de tu tienda online, liberándote a ti para que puedas concentrarte en hacer crecer tu negocio.
       </p>
     </div>
       </h3>
@@ -242,7 +242,7 @@ function HomePage(): JSX.Element {
               ¿Cansado de preocuparte por la logística?
             </h1>
             <p className="text-lg text-white">
-              Déjala en nuestras manos. Ofrecemos soluciones escalables y eficientes que te permiten enfocarte en lo que realmente importa: hacer crecer tu negocio.
+            Somos una empresa logística que se encarga de almacenar, empacar y enviar los productos de tu tienda online, liberándote a ti para que puedas concentrarte en hacer crecer tu negocio.
             </p>
           </div>
           </h3>

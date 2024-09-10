@@ -1,51 +1,69 @@
 import { Layout } from "../../../components/Layout";
+import Image from 'next/image';
 
-function Paqueteo() {
-  const deliveryImage = 'https://res.cloudinary.com/combariza/image/upload/v1675258218/Servilla/mision_mf19dw.jpg';
+const fulfillmentSteps = [
+  {
+    title: 'Recepción del Producto',
+    description: 'Los productos son recibidos en el centro de distribución.',
+    imageUrl: 'https://res.cloudinary.com/combariza/image/upload/c_crop,h_600,w_1000,x_0,y_50/g_south,c_fill/v1725895370/Servilla/recepcion_ojekui.jpg',
+  },
+  {
+    title: 'Almacenamiento',
+    description: 'Los productos son organizados y almacenados de manera segura.',
+    imageUrl: 'https://res.cloudinary.com/combariza/image/upload/v1725897200/Servilla/almacenamiento_v60aw4.jpg',
+  },
+  {
+    title: 'Pedidos',
+    description: 'Nos conectamos con tu página web, para recibir tus pedidos en tiempo real y empezar el proceso de alistamiento.',
+    imageUrl: 'https://res.cloudinary.com/combariza/image/upload/v1725897533/Servilla/pedidos_zsonxs.jpg',
+  },
+  {
+    title: 'Empacado y alistamiento',
+    description: 'Los pedidos son empacados según las necesidades del cliente y preparados para envío.',
+    imageUrl: 'https://res.cloudinary.com/combariza/image/upload/v1720442450/Servilla/empaque.jpg',
+  },
+  {
+    title: 'Envío a distribuidores',
+    description: 'Los pedidos son enviados a los sitios de distribución de cada barrio.',
+    imageUrl: 'https://res.cloudinary.com/combariza/image/upload/v1725898018/Servilla/distribucion_l87vol.jpg',
+  },
+  {
+    title: 'Entrega',
+    description: 'Los productos son entregados en el destino final.',
+    imageUrl: 'https://res.cloudinary.com/combariza/image/upload/v1725898241/Servilla/entrega_hsbdrt.jpg',
+  },
+];
 
+const Paqueteo = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4">
-        <header className="bg-gray-800 text-white p-4 pl-4">
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold">Transporte de Paquetería</h1>
-          <p>¡Entregamos tus paquetes de manera rápida y segura!</p>
-        </header>
-        <section className="flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 flex items-center">
-            <img src={deliveryImage} alt="Distribución de Paquetes" className="w-full h-auto" />
-          </div>
-          <div className="w-full md:w-1/2 md:pl-4">
-            <section className="bg-white shadow-md p-4 mt-4">
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">Servicios de Transporte</h2>
-              <ul className="pl-4 list-disc">
-                <li>Envíos locales y nacionales</li>
-                <li>Entrega express en 24 horas</li>
-                <li>Rastreo de paquetes en tiempo real</li>
-                <li>Embalaje y etiquetado profesional</li>
-                <li>Entrega programada</li>
-              </ul>
-            </section>
+      <div className="container mx-auto px-4 py-8"> {/* Container centralizado */}
+        <section className="space-y-8">
+          {fulfillmentSteps.map((step, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center bg-ser p-4 rounded-lg shadow-md md:flex-row md:space-x-4"
+            >
+              <div className="relative w-full h-64 md:w-1/3 md:h-64">
+                <Image
+                  src={step.imageUrl}
+                  alt={step.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="rounded-md"
+                />
+              </div>
 
-            <section className="bg-white shadow-md p-4 mt-4">
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">¿Por qué elegirnos?</h2>
-              <ul className="pl-4 list-disc">
-                <li> <div className="font-bold">Rápido y confiable:</div> Nuestro equipo de mensajeros está capacitado para realizar entregas rápidas y seguras.</li>
-                <li><div className="font-bold">Seguimiento en tiempo real:</div>Ofrecemos un sistema de rastreo en línea para que puedas seguir el progreso de tu paquete en tiempo real.</li>
-                <li><div className="font-bold">Servicio al cliente excepcional:</div>Nuestro equipo de atención al cliente está disponible las 24 horas para responder a tus consultas y brindarte asistencia.</li>
-                <li><div className="font-bold">Flexibilidad de entrega:</div>Ofrecemos opciones de entrega programada para adaptarnos a tus necesidades.</li>
-                <li><div className="font-bold">Embalaje profesional:</div>Nuestro equipo de embalaje se asegura de que tus paquetes estén protegidos de manera adecuada durante el transporte.</li>
-              </ul>
-            </section>
-          </div>
+              <div className="text-center md:text-left">
+                <h2 className="text-xl font-semibold text-white">{step.title}</h2>
+                <p className="text-white">{step.description}</p>
+              </div>
+            </div>
+          ))}
         </section>
-
-        <footer className="flex justify-around bg-gray-800 text-white p-4 mt-4 text-center">
-          <p>Telfono: 5476000</p>
-          <p>Email: mauricio.combariza@gruposervilla.com</p>
-        </footer>
       </div>
     </Layout>
   );
 }
 
-export default Paqueteo ;
+export default Paqueteo;
