@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as XLSX from 'xlsx';
 
-const IngresarInventario = () => {
+const IngresarInventario = ({handleCancel, send, handleInitial}: {handleCancel: () => void, handleInitial: () => void, send: (action: { type: string }) => void,}) => {
   const [file, setFile] = useState<File | null>(null);
 
   // Manejar el cambio de archivo
