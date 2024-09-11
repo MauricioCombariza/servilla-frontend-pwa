@@ -1,5 +1,6 @@
 import React from "react";
 import type { Metadata, Viewport } from "next";
+import Head from "next/head";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 interface Props {
@@ -25,12 +26,16 @@ const Layout: React.FC<Props> = ({ children }) => {
     gtmId: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID?.toString() || 'default-gtm-id',
     gtmAnalytics: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID?.toString() || 'default-gtm-analytics-id',
   };
+  console.log('GTM Config:', gtmConfig);
 
   return (
     <div className='flex flex-col mt-28 lg:mt-32'>
+      <Head>
+        <GoogleAnalytics gaId={gtmConfig.gtmAnalytics}/>
+        <GoogleTagManager gtmId={gtmConfig.gtmId} />
+      </Head>
       {children}
-      <GoogleAnalytics gaId={gtmConfig.gtmAnalytics}/>
-      <GoogleTagManager gtmId={gtmConfig.gtmId} />
+      
     </div>
   );
 }
