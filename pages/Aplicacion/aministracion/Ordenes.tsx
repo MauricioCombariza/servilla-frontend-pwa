@@ -43,13 +43,14 @@ const Ordenes: React.FC<OrdenesProps> = ({
                 Cancelar
             </button>
             <button
-                  className="bg-green-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/2 transition-colors duration-200"
-                  type="button"
-                  onClick={handleInitial}
-                  onTouchEnd={handleInitial}
+                className="bg-green-400 hover:bg-yellow-500 text-white font-bold mt-4 py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition-colors duration-200"
+                type="button"
+                onClick={handleInitial}
+                onTouchEnd={handleInitial}
                 >
-                  Ir a Inicio
+                Ir a Inicio
             </button>
+
         </>
     );
 }

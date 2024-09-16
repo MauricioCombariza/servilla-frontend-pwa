@@ -1,6 +1,8 @@
 const MenuInventario = ({ 
   onInventarioClick, 
   onInventarioTouch, 
+  inventarioClick,
+  inventarioTouch,
   onCrearInventarioClick, 
   onCrearInventarioTouch,
   handleCancel,
@@ -8,6 +10,8 @@ const MenuInventario = ({
 }: { 
   onInventarioClick: React.MouseEventHandler<HTMLButtonElement>, 
   onInventarioTouch: React.TouchEventHandler<HTMLButtonElement>, 
+  inventarioClick: React.MouseEventHandler<HTMLButtonElement>, 
+  inventarioTouch: React.TouchEventHandler<HTMLButtonElement>, 
   onCrearInventarioClick: React.MouseEventHandler<HTMLButtonElement>, 
   onCrearInventarioTouch: React.TouchEventHandler<HTMLButtonElement>, 
   handleCancel: () => void,
@@ -20,7 +24,7 @@ const MenuInventario = ({
       onClick={onInventarioClick}
       onTouchEnd={onInventarioTouch}
     >
-      Consumo por Orden
+      Consumo
     </button>
     <button
       className="bg-green-400 hover:bg-yellow-500 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-11/12 h-12 sm:min-w-48 sm:h-14 transition-colors duration-200 text-sm sm:text-base mx-auto"
@@ -31,6 +35,14 @@ const MenuInventario = ({
       Ingresar Productos
     </button>
     <button
+      className="bg-green-400 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-11/12 h-12 sm:min-w-48 sm:h-14 transition-colors duration-200 text-sm sm:text-base mx-auto"
+      type="button"
+      onClick={inventarioClick}
+      onTouchEnd={inventarioTouch}
+    >
+      Inventario
+    </button>
+    <button
       className="bg-green-400 hover:bg-red-500 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-11/12 h-12 sm:min-w-48 sm:h-14 transition-colors duration-200 text-sm sm:text-base mx-auto"
       type="button"
       onClick={handleCancel}
@@ -38,12 +50,12 @@ const MenuInventario = ({
       Cancelar
     </button>
     <button
-                  className="bg-green-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/2 transition-colors duration-200"
-                  type="button"
-                  onClick={handleInitial}
-                  onTouchEnd={handleInitial}
-                >
-                  Ir a Inicio
+      className="bg-green-400 hover:bg-red-500 text-white font-bold py-3 px-6 rounded focus:outline-none focus:shadow-outline w-11/12 h-12 sm:min-w-48 sm:h-14 transition-colors duration-200 text-sm sm:text-base mx-auto"
+      type="button"
+      onClick={handleInitial}
+      onTouchEnd={handleInitial}
+    >
+      Ir a Inicio
     </button>
   </div>
 );

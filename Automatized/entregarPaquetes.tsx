@@ -93,6 +93,7 @@ const automateMachine = createMachine({
       on: {
         CONSUMOPORORDEN: 'consumo_por_orden',
         INGRESARPRODUCTO: 'ingresar_producto',
+        INVENTARIO: 'inventario',
         CANCEL: 'modulos_admon',
         INITIAL:'modulos',
       }
@@ -108,6 +109,13 @@ const automateMachine = createMachine({
     ingresar_producto: {
       on: {
         START: 'administracion',
+        INITIAL:'modulos',
+      }
+    },
+    inventario: {
+      on: {
+        START: 'administracion',
+        CANCEL: 'modulos_admon',
         INITIAL:'modulos',
       }
     },

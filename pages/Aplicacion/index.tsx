@@ -14,6 +14,7 @@ import Efectivo from './mensajeros/Efectivo';
 import Devolucion from './mensajeros/Devolucion';
 import FotoModule from './mensajeros/Foto';
 import Verificado from './base/Verificado';
+import Inventario from './aministracion/inventario';
 import Finalizar from './base/Finalizar';
 import CambioContrasena from './aministracion/CambioContrasena';
 import Dinero from './mensajeros/Dinero';
@@ -110,6 +111,14 @@ const YourPage = () => {
 
     const menu_inventario = () => {
       send({ type: 'MENUINVENTARIO' });
+    };
+
+    const inventarioClick = () => {
+      send({ type: 'INVENTARIO' });
+    };
+
+    const inventarioTouch = () => {
+      send({ type: 'INVENTARIO' });
     };
 
     const dinero = () => {
@@ -229,6 +238,7 @@ const YourPage = () => {
             {current.matches('modulos') && <Modulos send={send} setRol={setRol} setUsername={setUsername} handleInitial={handleInitial} setCodMen={setCodMen}/>}
             {current.matches('ingreso') && <Ingreso send={send} handleInitial={handleInitial} cod_men={cod_men} password={password} setUsername={setUsername} setCodMen={setCodMen} setPassword={setPassword} />}     
             {current.matches('ingresar_producto') && <IngresarProducto handleInitial={handleInitial} send={send} handleCancel={handleCancel} />}
+            {current.matches('inventario') && <Inventario handleInitial={handleInitial} send={send} handleCancel={handleCancel} />}
             {current.matches('ingreso_admon') && <IngresoAdmon send={send} handleInitial={handleInitial} setUsername={setUsername} setRol={setRol} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />}
             {current.matches('cambio_contrasena') && <CambioContrasena handleInitial={handleInitial} />} 
             {current.matches('ordenes') && <Ordenes order={order} id_cliente={id_cliente} handleInitial={handleInitial} setIdCliente={setIdCliente} setOrder={setOrder} handleFileChange={handleFileChange} handleUploadOrders={handleUploadOrdersBase} handleCancel={handleCancel} />}
@@ -242,7 +252,7 @@ const YourPage = () => {
             {current.matches('nequi_efectivo') && <NequiEfectivo setModuloSiguiente={setModuloSiguiente} handleInitial={handleInitial} setPaymentMethod={setPaymentMethod} consignee={consignee} setConsignee={setConsignee} value={value} setValue={setValue} value1={value1} setValue1={setValue1} handleFoto={handleFoto} handleDatos={handleDatos} handleCancel={handleCancel} />}
             {current.matches('foto') && <FotoModule handleCancel={handleCancel} handleInitial={handleInitial} handleFinalizar={handleFinalizar} />}
             {current.matches('dinero') && <Dinero username={username} handleInitial={handleInitial} handleVerificado={handleVerificado} handleCancel={handleCancel}/>}
-            {current.matches('menu_inventario') && <MenuInventario handleCancel={handleCancel} handleInitial={handleInitial} onInventarioClick={onInventarioClick} onInventarioTouch={onInventarioTouch} onCrearInventarioClick={onCrearInventarioClick} onCrearInventarioTouch={onCrearInventarioTouch} />}
+            {current.matches('menu_inventario') && <MenuInventario handleCancel={handleCancel} inventarioClick={inventarioClick} inventarioTouch={inventarioTouch} handleInitial={handleInitial} onInventarioClick={onInventarioClick} onInventarioTouch={onInventarioTouch} onCrearInventarioClick={onCrearInventarioClick} onCrearInventarioTouch={onCrearInventarioTouch} />}
             {current.matches('consumo_por_orden') && <ConsumoPorOrden send={send} handleInitial={handleInitial} handleCancel={handleCancel}/>}
             {current.matches('cajoneras') && <Cajoneras username={username} handleInitial={handleInitial} modulos_admon={modulos_admon}/>}
             {current.matches('whatsapp') && <WhatsApp handleCancel={handleCancel} handleInitial={handleInitial}/>}

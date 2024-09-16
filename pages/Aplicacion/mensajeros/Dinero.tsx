@@ -234,7 +234,7 @@ const Dinero: React.FC<DineroProps> = ({ username, handleVerificado, handleCance
             </div>
           )}
           <button
-            className="bg-green-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/2 transition-colors duration-200"
+            className="bg-green-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-5 transition-colors duration-200"
             type="button"
             onClick={handleInitial}
             onTouchEnd={handleInitial}

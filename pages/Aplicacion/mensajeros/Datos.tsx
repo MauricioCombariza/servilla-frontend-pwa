@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC, MouseEvent } from 'react';
 import { API_SER } from '@/pages/api';
 import { buscarSerial } from '@/utils/funciones/funcionesManejoTablas';
+import { Layout } from '@/components/Layout';
 
 interface DatosProps {
   setGuideNumber: (guideNumber: string) => void;
@@ -67,7 +68,8 @@ const Datos: FC<DatosProps> = ({paymentMethod,setPaymentMethod, send, guideNumbe
 
   
   return (
-            <div className="w-full max-w-md mx-auto mt-6">
+            <Layout>
+              <div className="w-full max-w-md mx-auto mt-6">
                 <h1 className='bg-blue-500 text-2xl text-white text-center py-2 mb-4 mx-2'>Ingresar datos entrega</h1>
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                   <div className="mb-4">
@@ -106,15 +108,17 @@ const Datos: FC<DatosProps> = ({paymentMethod,setPaymentMethod, send, guideNumbe
                     </button>
                   </div>
                   <button
-                  className="bg-green-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/2 transition-colors duration-200"
-                  type="button"
-                  onClick={handleInitial}
-                  onTouchEnd={handleInitial}
-                >
-                  Ir a Inicio
-                </button>
+                    className="bg-green-500 hover:bg-green-800 text-white font-bold py-2 px-4 mt-10 w-full rounded focus:outline-none focus:shadow-outline"
+                    type="button"
+                    onClick={handleInitial}
+                    onTouchEnd={handleInitial}
+                  >
+                    Ir a Inicio
+                  </button>
+
                 </form>
               </div>
+            </Layout>
 
     );
 }

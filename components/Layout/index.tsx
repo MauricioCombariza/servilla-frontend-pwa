@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata, Viewport } from "next";
 import Head from "next/head";
+import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 interface Props {
@@ -35,7 +36,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         <GoogleTagManager gtmId={gtmConfig.gtmId} />
       </Head>
       {children}
-      
+      <Analytics/>
     </div>
   );
 }

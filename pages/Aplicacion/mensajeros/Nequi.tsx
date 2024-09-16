@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Layout } from '@/components/Layout';
 
 interface NequiProps {
     consignee: string;
@@ -30,7 +31,8 @@ const Nequi: React.FC<NequiProps> = ({
     handleFoto('nequi', value); // Asumiendo que el método es 'nequi'
 };
   return(   
-        <div className="w-full max-w-xs mx-auto mt-4">
+        <Layout>
+          <div className="w-full max-w-xs mx-auto mt-4">
           <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="consignee">
@@ -87,6 +89,7 @@ const Nequi: React.FC<NequiProps> = ({
             </div>
           </form>
         </div>
+        </Layout>
      );
 }
 
