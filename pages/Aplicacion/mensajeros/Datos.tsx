@@ -1,8 +1,8 @@
-import React, { ChangeEvent, FC, MouseEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { API_SER } from '@/pages/api';
 import { buscarSerial } from '@/utils/funciones/funcionesManejoTablas';
 import { Layout } from '@/components/Layout';
-import Quagga from 'quagga'; // Importa Quagga para el escaneo
+import { BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
 
 interface DatosProps {
   setGuideNumber: (guideNumber: string) => void;
@@ -12,12 +12,6 @@ interface DatosProps {
   setPaymentMethod: (paymentMethod: string) => void;
   send: (action: { type: string }) => void;
   handleInitial: () => void;
-}
-
-interface QuaggaResult {
-  codeResult: {
-    code: string;
-  };
 }
 
 const Datos: FC<DatosProps> = ({
@@ -30,6 +24,7 @@ const Datos: FC<DatosProps> = ({
   setGuideNumber,
 }) => {
   const [scanning, setScanning] = useState(false); // Estado para manejar el escaneo
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePaymentMethodChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setPaymentMethod(event.target.value);
@@ -39,7 +34,7 @@ const Datos: FC<DatosProps> = ({
     setGuideNumber(event.target.value);
   };
 
-  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
       const response = await buscarSerial(guideNumber, 'orders');
@@ -84,40 +79,23 @@ const Datos: FC<DatosProps> = ({
   // Efecto para manejar la inicialización y el cierre del escaneo
   useEffect(() => {
     if (scanning) {
-      Quagga.init(
-        {
-          inputStream: {
-            type: 'LiveStream',
-            target: document.querySelector('#barcode-scanner'), // Asegúrate de que el contenedor exista
-            constraints: {
-              facingMode: 'environment', // Usa la cámara trasera
-            },
-          },
-          decoder: {
-            readers: ['code_128_reader'], // Puedes cambiar el tipo de código de barras según lo que necesites
-          },
-        },
-        (err: Error | null) => {
-          if (err) {
-            console.error(err);
-            setScanning(false);
-            return;
-          }
-          Quagga.start();
+      const codeReader = new BrowserMultiFormatReader();
+      codeReader.decodeFromVideoDevice(null, videoRef.current!, (result, error) => {
+        if (result) {
+          setGuideNumber(result.getText());
+          alert(`Código QR escaneado: ${result.getText()}`);
+          setScanning(false);
         }
-      );
-
-      Quagga.onDetected((result: QuaggaResult) => {
-        const code = result.codeResult.code;
-        setGuideNumber(code); // Asignar el código escaneado
-        alert(`Código de barras escaneado: ${code}`);
-        Quagga.stop();
-        setScanning(false);
+        if (error) {
+          console.error(error);
+        }
+      }).catch(err => {
+        console.error(err);
       });
 
-      // Cleanup para detener Quagga al desmontar el componente
+      // Cleanup para detener el escaneo al desmontar el componente
       return () => {
-        Quagga.stop();
+        codeReader.reset();
       };
     }
   }, [scanning, setGuideNumber]);
@@ -200,11 +178,21 @@ const Datos: FC<DatosProps> = ({
         </form>
 
         {/* Contenedor para el escaneo del código de barras */}
-        <div id="barcode-scanner" style={{ width: '100%', height: '300px' }}></div>
+        {scanning && (
+          <div>
+            <video
+              ref={videoRef}
+              style={{ width: '100%', height: '300px' }}
+              autoPlay
+              muted
+            />
+          </div>
+        )}
       </div>
     </Layout>
   );
 };
 
 export default Datos;
+
 
