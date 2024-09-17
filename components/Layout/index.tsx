@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata, Viewport } from "next";
 import Head from "next/head";
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 interface Props {
@@ -37,6 +38,7 @@ const Layout: React.FC<Props> = ({ children }) => {
       </Head>
       {children}
       <Analytics/>
+      <SpeedInsights/>
     </div>
   );
 }
