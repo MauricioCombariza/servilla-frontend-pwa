@@ -85,7 +85,7 @@ const Datos: FC<DatosProps> = ({ paymentMethod, setPaymentMethod, send, guideNum
       decoder: {
         readers: ['code_128_reader'], // Puedes cambiar el tipo de código de barras según lo que necesites
       },
-    }, (err: Error) => {
+    }, (err: Error | null) => {
       if (err) {
         console.error(err);
         setScanning(false);
