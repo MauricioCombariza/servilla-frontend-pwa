@@ -51,7 +51,7 @@ const YourPage = () => {
     
     // Inicializa el estado para el número de guía y el método de pago
     const [guideNumber, setGuideNumber] = React.useState('');
-    const [paymentMethod, setPaymentMethod] = React.useState('Nequi');
+    const [paymentMethod, setPaymentMethod] = React.useState('Sin_Cobro');
     const [consignee, setConsignee] = useState('');
     const [entidad, setEntidad] = useState('');
     const [value, setValue] = useState(0);
