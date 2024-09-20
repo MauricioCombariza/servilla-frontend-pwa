@@ -46,7 +46,6 @@ export default function Home() {
                 </a>
               </div>
               <div className="w-full lg:w-1/2">
-                {/* <Image src="/hero-image.jpg" alt="Servilla Fulfillment Center" width={600} height={400} className="rounded-lg shadow-lg" /> */}
                 <Image
                 src="https://res.cloudinary.com/combariza/image/upload/c_scale,w_auto/v1720447327/Servilla/dropshipping.jpg"
                 className="rounded-lg shadow-lg"
@@ -212,14 +211,14 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-8 text-center">
-              <p>&copy; 2023 Servilla. Todos los derechos reservados.</p>
+              <p>&copy; 2024 Servilla. Todos los derechos reservados.</p>
             </div>
           </div>
         </footer>
 
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/"
+          href="https://wa.me/573125213058?text=Hola%2C%20quisiera%20más%20información"
           className="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 hover:bg-green-600 transition duration-300 z-50"
           target="_blank"
           rel="noopener noreferrer"
@@ -227,6 +226,7 @@ export default function Home() {
         >
           <FaWhatsapp className="text-2xl" />
         </a>
+
       </main>
     </>
   )
