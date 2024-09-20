@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MapComponent: React.FC = () => {
-  const googleKey = process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY;
+  const googleKey = process.env.NEXT_PUBLIC_GOOGLE_MAP;
   const location = 'Calle 74a 50 38, Bogota Colombia';
   return (
     <div style={{ maxWidth: '100%', overflow: 'hidden', color: 'red', width: '500px', height: '500px' }}>
