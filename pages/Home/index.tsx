@@ -187,7 +187,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-center mb-12">Contáctenos</h2>
             <div className="flex flex-wrap -mx-4">
               <div className="w-full md:w-1/2 px-4 mb-8 md:mb-0">
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="nombre" className="block text-sm font-bold mb-2">Nombre</label>
                     <input
