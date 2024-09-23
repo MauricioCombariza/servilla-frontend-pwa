@@ -1,12 +1,37 @@
+import { useState } from 'react'
 import Image from 'next/image'
 import Head from 'next/head'
 import MapComponent from './MapComponents'
 import YearsInMarket from './YearsInMarket'
+import { supabase } from '@/supabase'
 import { FaTruck, FaWarehouse, FaChartLine, FaWhatsapp } from 'react-icons/fa'
 import { FaCog, FaGlobe, FaTools, FaHeadset } from 'react-icons/fa';
 
 
 export default function Home() {
+  const [nombre, setNombre] = useState('');
+  const [email, setEmail] = useState('');
+  const [mensaje, setMensaje] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Insertar los datos en la tabla 'comentarios'
+    const { error } = await supabase.from('comentarios').insert([
+      { nombre, email, mensaje }
+    ]);
+
+    if (error) {
+      console.error('Error al insertar comentario:', error.message);
+    } else {
+      console.log('Comentario enviado con éxito');
+      // Resetear los campos del formulario
+      setNombre('');
+      setEmail('');
+      setMensaje('');
+      alert("Mensaje enviado de forma existosa!!!");
+    }
+  };
   return (
     <>
       <Head>
@@ -165,15 +190,34 @@ export default function Home() {
                 <form className="space-y-4">
                   <div>
                     <label htmlFor="nombre" className="block text-sm font-bold mb-2">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" required />
+                    <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                    required
+                    onChange={(e) => setNombre(e.target.value)}
+                    />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-bold mb-2">Email</label>
-                    <input type="email" id="email" name="email" className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" required />
+                    <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required />
                   </div>
                   <div>
                     <label htmlFor="mensaje" className="block text-sm font-bold mb-2">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" rows={4} className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" required></textarea>
+                    <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows={4}
+                    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                    onChange={(e) => setMensaje(e.target.value)}
+                    required></textarea>
                   </div>
                   <button type="submit" className="bg-darkser hover:bg-lightser text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                     Enviar Mensaje
