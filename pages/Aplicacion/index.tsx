@@ -236,7 +236,7 @@ const YourPage = () => {
             <p className="mb-4 text-green-700">Estado actual: {JSON.stringify(current.value)}</p>
 
             {current.matches('modulos') && <Modulos send={send} setRol={setRol} setUsername={setUsername} handleInitial={handleInitial} setCodMen={setCodMen}/>}
-            {current.matches('ingreso') && <Ingreso send={send} handleInitial={handleInitial} cod_men={cod_men} password={password} setUsername={setUsername} setCodMen={setCodMen} setPassword={setPassword} />}     
+            {current.matches('ingreso') && <Ingreso send={send} setEmail={setEmail} handleInitial={handleInitial} rol={rol} setRol={setRol} email={email} password={password} setPassword={setPassword} />}     
             {current.matches('ingresar_producto') && <IngresarProducto handleInitial={handleInitial} send={send} handleCancel={handleCancel} />}
             {current.matches('inventario') && <Inventario handleInitial={handleInitial} send={send} handleCancel={handleCancel} />}
             {current.matches('ingreso_admon') && <IngresoAdmon send={send} handleInitial={handleInitial} setUsername={setUsername} setRol={setRol} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />}

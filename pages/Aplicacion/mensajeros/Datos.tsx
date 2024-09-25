@@ -133,10 +133,10 @@ const Datos: FC<DatosProps> = ({
               id="paymentMethod"
               onChange={handlePaymentMethodChange}
             >
+              <option value="Sin_Cobro">Sin Cobro</option>
               <option value="Nequi">Nequi</option>
               <option value="Efectivo">Efectivo</option>
               <option value="Efectivo_Nequi">Efectivo-Nequi</option>
-              <option value="Sin_Cobro">Sin Cobro</option>
               <option value="Otra">Otra</option>
               <option value="Devolucion">Devolución</option>
             </select>
