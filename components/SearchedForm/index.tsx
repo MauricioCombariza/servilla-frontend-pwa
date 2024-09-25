@@ -5,6 +5,7 @@ import { MediaCard } from '../MediaCard';
 import { useAuth } from '../../Auth';
 import { AuthContextProps } from '../../Auth';
 
+
 interface DbType {
 serial: string,
 no_entidad: number,
@@ -43,7 +44,9 @@ const SearchedForm = () => {
         pathFetch = "dirnum";
         pathEnd = dirnum;
       }
-    const preAPI = process.env.API
+    // const preAPI = process.env.API
+    const preAPI = process.env.NEXT_PUBLIC_API;
+
     const postAPI = 'event'
     const urlBase = `${preAPI}/${postAPI}`
 
@@ -52,6 +55,8 @@ const SearchedForm = () => {
     
     const buscar = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      console.log("preAPI", preAPI)
+      console.log("Api", API)
     
       if (serial.length === 0 && dirnum.length === 0) {
         setErrorMensaje('Por favor, ingrese un serial o dirnum válido');
