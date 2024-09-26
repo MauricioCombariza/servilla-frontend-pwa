@@ -226,14 +226,14 @@ const horizontalNavItems: ListType[] = [
         id:302,
         className: ''
     },
-    {
-        icon: <AttachEmailIcon sx={{ color:"white", "& :hover": { color: "Green" } }}/>,
-        title: "Email certificado",
-        link: "/Servicio/Email",
-        private: false,
-        id:303,
-        className: ''
-    },
+    // {
+    //     icon: <AttachEmailIcon sx={{ color:"white", "& :hover": { color: "Green" } }}/>,
+    //     title: "Email certificado",
+    //     link: "/Servicio/Email",
+    //     private: false,
+    //     id:303,
+    //     className: ''
+    // },
     {
         icon: <WarehouseIcon sx={{ color:"white", "& :hover": { color: "Green" } }}/>,
         title: "Fulfillment",

@@ -68,8 +68,6 @@ export default function FulfillmentPage() {
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-2xl font-semibold text-ser mb-4">Desventajas</h3>
               <ul className="list-disc list-inside text-ser">
-                <li>Pérdida de control directo sobre el inventario</li>
-                <li>Dependencia del proveedor de servicios</li>
                 <li>Posibles problemas de comunicación</li>
                 <li>Menor flexibilidad en procesos personalizados</li>
               </ul>

@@ -99,18 +99,6 @@ const Dropshipping: NextPage = () => {
                   </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    <span className="text-ser">Poco control sobre la cadena de suministro</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    <span className="text-ser">Competencia intensa en el mercado</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    <span className="text-ser">Problemas potenciales con el envío y la calidad</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     <span className="text-ser">Dificultad para construir una marca única</span>
                   </li>
                 </ul>

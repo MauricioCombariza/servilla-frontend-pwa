@@ -46,13 +46,14 @@ const AlistamientoEmpacadoPage: NextPage = () => {
               </ol>
             </div>
             <div className="flex justify-center">
-              <Image
-                src="https://res.cloudinary.com/combariza/image/upload/v1720441774/Servilla/inventario.jpg"
-                alt="Proceso de Alistamiento y Empacado"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg"
-              />
+            <Image
+              src="https://res.cloudinary.com/combariza/image/upload/v1727383891/Servilla/inventarioAjustado_bhh3a8.jpg"
+              alt="Proceso de Alistamiento y Empacado"
+              width={600}
+              height={300}
+              className="rounded-lg shadow-lg"
+            />
+
             </div>
           </div>
         </section>
@@ -90,18 +91,6 @@ const AlistamientoEmpacadoPage: NextPage = () => {
               <div className="bg-white p-8 rounded-lg shadow-md">
                 <h3 className="text-2xl font-semibold text-ser mb-6">Desventajas</h3>
                 <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    <span className="text-ser">Costos iniciales en equipamiento y capacitación</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    <span className="text-ser">Dependencia de sistemas tecnológicos</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    <span className="text-ser">Necesidad de personal especializado</span>
-                  </li>
                   <li className="flex items-start">
                     <svg className="w-6 h-6 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     <span className="text-ser">Posibles cuellos de botella en temporadas altas</span>

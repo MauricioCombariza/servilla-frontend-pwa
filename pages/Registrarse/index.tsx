@@ -5,6 +5,7 @@ import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { usePostSignup, SignupType } from "../../Hooks/usePostSignup";
 import { useAuth, AuthContextProps } from "../../Auth";
 import { supabase } from "../../supabase"
+import { Layout } from "@/components/Layout";
 
 interface IFormData {
     username: string | null;
@@ -96,7 +97,8 @@ function Registrarse () {
         
     }
     return (
-        <Container maxWidth='md'>
+        <Layout>
+            <Container maxWidth='md'>
             <form
             className="container lg:px-20 lg:m-20 mx-2 pt-10 bg-gray-200"
             method="post"
@@ -176,6 +178,7 @@ function Registrarse () {
         </form>
         {isLoading && <LoadingSpinner />}
         </Container>
+        </Layout>
     )
 }
 
