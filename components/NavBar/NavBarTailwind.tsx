@@ -43,7 +43,9 @@ return (
 <>
 <AppBar>
 <nav className='flex flex-col sm:flex-row justify-between items-center w-full bg-ser lg:py-3 top-0'>
-  <div className="flex items-center justify-between w-full sm:justify-start space-x-6">
+  {/* Contenedor principal de logo y botones */}
+  <div className="flex items-center justify-between w-full sm:justify-start space-x-6 px-4 sm:px-0">
+    {/* Logo */}
     <Link href="/"> 
       <img
         src="https://res.cloudinary.com/combariza/image/upload/c_fill,w_200,h_50/v1643312479/Servilla/servilla_logo_white_pzdmwm.png"
@@ -51,18 +53,24 @@ return (
         className="cursor-pointer pt-3 pl-2 lg:pt-0"
       />
     </Link>
+
+    {/* Botón de Rastreo guías */}
     <Link href="/Aplicacion"> 
-      <button className='bg-green-700 hover:bg-green-300 text-white hover:text-black px-4 py-2 rounded text-2xl transition-colors duration-200'>Rastreo guias</button>
+      <button className='bg-green-700 hover:bg-green-300 text-white hover:text-black px-4 py-2 rounded text-xl sm:text-2xl transition-colors duration-200'>
+        Rastreo guías
+      </button>
     </Link>
-    <div className='absolute right-5 sm:relative sm:flex sm:items-center sm:gap-3 lg:invisible sm:visible'>
+
+    {/* Menú Hamburguesa para versión mobile */}
+    <div className='absolute right-5 sm:relative sm:flex sm:items-center sm:gap-3 sm:ml-4 lg:invisible sm:visible'>
       <IconButton
         color='inherit'
         size='large'
         sx={{ flexGrow: 1, display: { xs: "block", sm: "none" } }}
-        onClick={()=>setOpen(true)}
-        >
-            <MenuIcon />
-        </IconButton>
+        onClick={() => setOpen(true)}
+      >
+        <MenuIcon />
+      </IconButton>
     </div>
   </div>
   <ul className='hidden sm:flex items-center text-white gap-3'>
