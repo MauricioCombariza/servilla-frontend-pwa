@@ -19,7 +19,7 @@ const Dropshipping: NextPage = () => {
         {/* Hero Section */}
         <section className="relative h-[60vh] bg-ser flex items-center justify-center">
           <Image
-            src="https://res.cloudinary.com/combariza/image/upload/v1720447327/Servilla/dropshipping.jpg"
+            src="https://res.cloudinary.com/combariza/image/upload/v1727364673/Servilla/dropshippinMujer_hqvbvf.jpg"
             alt="Dropshipping Illustration"
             layout="fill"
             objectFit="contain"

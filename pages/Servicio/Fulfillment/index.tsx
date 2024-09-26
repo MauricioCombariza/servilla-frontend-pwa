@@ -19,7 +19,7 @@ export default function FulfillmentPage() {
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}>
             Fulfillment Logístico
           </h1>
-          <p className="text-xl md:text-2xl text-darkser bold" style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7)' }}>
+          <p className="text-xl md:text-2xl text-whiteser bold" style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7)' }}>
             La solución para optimizar tu cadena de suministro
           </p>
         </div>
