@@ -74,13 +74,27 @@ export default function Home() {
         <section id="inicio" className="pt-24 pb-12 bg-darkser text-white">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap items-center">
-              <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
-                <h1 className="text-4xl md:text-6xl font-bold mb-4">Fulfillment de Próxima Generación</h1>
-                <p className="text-xl mb-8">Optimice su logística y aumente la satisfacción del cliente con Servilla</p>
+            <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">Fulfillment de Próxima Generación</h1>
+              <p className="text-xl mb-8">Optimice su logística y aumente la satisfacción del cliente con Servilla</p>
+              
+              <div className="flex items-center space-x-4">
                 <a href="#contacto" className="bg-ser hover:bg-lightser text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block">
                   Solicitar Información
                 </a>
+
+                {/* Botón + visible en dispositivos móviles */}
+                <a href="Servicio/Fulfillment" className="bg-lightser hover:bg-whiteser text-white font-bold py-1 px-6 rounded-full transition duration-300 inline-block text-4xl md:hidden">
+                  +
+                </a>
+
+                {/* Botón "¿Qué es Fulfillment?" visible en tablet y desktop */}
+                <a href="Servicio/Fulfillment" className="bg-lightser hover:bg-whiteser text-white font-bold py-3 px-6 rounded-full transition duration-300 hidden md:inline-block">
+                  ¿Qué es Fulfillment?
+                </a>
               </div>
+
+            </div>
               <div className="w-full lg:w-1/2">
                 <Image
                   src="https://res.cloudinary.com/combariza/image/upload/c_scale,w_auto/v1720447327/Servilla/dropshipping.jpg"
