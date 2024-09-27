@@ -43,7 +43,7 @@ const NavBar = () => {
 return (
 <>
 <AppBar>
-<nav className='flex flex-col sm:flex-row justify-between items-center w-full bg-darkser lg:py-3 top-0'>
+<nav className='flex flex-col sm:flex-row justify-between items-center w-full bg-whiteser lg:py-3 top-0'>
 
   {/* Contenedor principal de logo y botones */}
   <div className="flex items-center justify-between w-full sm:justify-start space-x-6 px-4 sm:px-0">
@@ -59,7 +59,7 @@ return (
       />
 
       {/* Nombre de la empresa */}
-      <span className="text-white font-bold text-lg sm:text-xl lg:text-2xl" style={{ fontFamily: 'Bodoni Moda, serif' }}>
+      <span className="text-black font-bold text-lg sm:text-xl lg:text-2xl" style={{ fontFamily: 'Bodoni Moda, serif' }}>
         SERVILLA
       </span>
     </Link>

@@ -13,7 +13,7 @@ const DetailList = () => {
               <ListItem sx={{ backgroundColor: '#1E5128' }} key={i.id}>
                   <ListItemButton>
                     <ListItemIcon>{i.icon}</ListItemIcon>
-                    <ListItemText primary={i.title} sx={{ color: 'white' }} />
+                    <ListItemText primary={i.title} sx={{ color: 'black' }} />
                   </ListItemButton>
                 </ListItem>
             </Link>

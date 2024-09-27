@@ -19,7 +19,7 @@ import { ListType, ListDetailType } from './type/navListType';
 const horizontalNavItems: ListType[] = [
     {
         icon: 
-        <HomeIcon sx={{ color:{xs:"green", sm:"white"} }}/>
+        <HomeIcon sx={{ color:{xs:"green", sm:"black"} }}/>
         ,
         title: "Nosotros",
         link: "/",
@@ -30,7 +30,7 @@ const horizontalNavItems: ListType[] = [
         onclick: undefined
     },
     {
-        icon: <PedalBikeIcon sx={{ color:{xs:"green", sm:"white"} }}/>,
+        icon: <PedalBikeIcon sx={{ color:{xs:"green", sm:"black"} }}/>,
         title: "Servicios",
         link: "",
         private: false,
@@ -38,7 +38,7 @@ const horizontalNavItems: ListType[] = [
         id:401,
         className: ''
     },
-    {  icon: <LocalPhoneIcon sx={{ color:{xs:"green", sm:"white"} }}/>,
+    {  icon: <LocalPhoneIcon sx={{ color:{xs:"green", sm:"black"} }}/>,
       title: "Contactenos",
       link: "/Contactenos",
       private: false,
@@ -46,7 +46,7 @@ const horizontalNavItems: ListType[] = [
       className: ''
     },
     {
-        icon: <LockOpenIcon sx={{ color:{xs:"green", sm:"white"} }}/>,
+        icon: <LockOpenIcon sx={{ color:{xs:"green", sm:"black"} }}/>,
         title: "Ingresar",
         link: "/Ingresar",
         private: false,
@@ -54,7 +54,7 @@ const horizontalNavItems: ListType[] = [
         className: ''
     },
     {
-        icon: <EditIcon sx={{ color:{xs:"green", sm:"white"} }}/>,
+        icon: <EditIcon sx={{ color:{xs:"green", sm:"black"} }}/>,
         title: "Registrarse",
         link: "/Registrarse",
         private: false,
@@ -62,7 +62,7 @@ const horizontalNavItems: ListType[] = [
         className: ''
     },
     {
-        icon: <ArticleIcon sx={{ color:{xs:"green", sm:"white"} }}/>,
+        icon: <ArticleIcon sx={{ color:{xs:"green", sm:"black"} }}/>,
         title: "Informes",
         link: "/Indice",
         private: true,
@@ -70,7 +70,7 @@ const horizontalNavItems: ListType[] = [
         className: ''
     },
     {
-        icon: <LockIcon sx={{ color:{xs:"green", sm:"white"} }}/>,
+        icon: <LockIcon sx={{ color:{xs:"green", sm:"black"} }}/>,
         title: "Cerrar sesion",
         link: "/Salir",
         private: true,
