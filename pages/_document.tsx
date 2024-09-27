@@ -9,6 +9,7 @@ export default function Document() {
             href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600&display=swap"
             rel="stylesheet"
         />
+          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
         {/* Etiqueta global del sitio (gtag.js) - Google Analytics */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
         <script dangerouslySetInnerHTML={{ __html: ` window.dataLayer = window.dataLayer || [];

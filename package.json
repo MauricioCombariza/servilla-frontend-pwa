@@ -12,6 +12,7 @@
     "@ducanh2912/next-pwa": "^10.2.8",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@fontsource/inter": "^5.1.0",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
     "@next/third-parties": "^14.2.5",

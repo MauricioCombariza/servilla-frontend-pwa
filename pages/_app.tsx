@@ -4,6 +4,7 @@ import { AuthProvider } from "@/Auth";
 import { NavBar } from '@/components/NavBar/NavBarTailwind';
 import { InstallBanner } from '@/components/InstallBanner';
 import "@/styles/globals.css";
+import '@fontsource/inter'
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as gtag from '@/lib/gtag';
