@@ -37,7 +37,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="theme-color" content="#000000" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-        <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/combariza/image/upload/v1695061362/Servilla/servilla_favicon.png" />
+        <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/combariza/image/upload/v1727436359/Servilla/Servilla-Favicon-sinfondo_gnn8kb.ico" />
+        {/* <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/combariza/image/upload/v1695061362/Servilla/servilla_favicon.png" /> */}
         <link rel="preconnect" href='https://res.cloudinary.com/'/>
         <link rel="preconnect" href='https://fonts.googleapis.com/' />
         <link rel="preconnect" href='https://www.google-analytics.com/' />
@@ -69,7 +70,8 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* Preload logo image */}
         <link 
           rel="preload" 
-          href="https://res.cloudinary.com/combariza/image/upload/v1695061362/Servilla/servilla_favicon.png" 
+          href="https://res.cloudinary.com/combariza/image/upload/v1727436359/Servilla/Servilla-Favicon-sinfondo_gnn8kb.ico"
+          // href="https://res.cloudinary.com/combariza/image/upload/v1695061362/Servilla/servilla_favicon.png" 
           as="image" 
         />
         

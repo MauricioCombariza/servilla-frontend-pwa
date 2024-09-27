@@ -2,6 +2,7 @@
 // use client
 import React from 'react';
 import Link from 'next/link'
+import Image from 'next/image';
 // import { NavLink } from 'react-router-dom'
 
 import { horizontalNavItems } from './NavBarList'
@@ -42,16 +43,25 @@ const NavBar = () => {
 return (
 <>
 <AppBar>
-<nav className='flex flex-col sm:flex-row justify-between items-center w-full bg-ser lg:py-3 top-0'>
+<nav className='flex flex-col sm:flex-row justify-between items-center w-full bg-darkser lg:py-3 top-0'>
+
   {/* Contenedor principal de logo y botones */}
   <div className="flex items-center justify-between w-full sm:justify-start space-x-6 px-4 sm:px-0">
     {/* Logo */}
-    <Link href="/"> 
-      <img
-        src="https://res.cloudinary.com/combariza/image/upload/c_fill,w_200,h_50/v1643312479/Servilla/servilla_logo_white_pzdmwm.png"
+    <Link href="/" className="flex items-center space-x-2">
+      {/* Logo */}
+      <Image
+        src="https://res.cloudinary.com/combariza/image/upload/v1727436471/Servilla/Servilla_sin_fondo_mwigkk.png"
         alt="logo1"
-        className="cursor-pointer pt-3 pl-2 lg:pt-0"
+        width={80}  // Ancho para móviles
+        height={0}   // Mantiene la proporción del alto
+        className="cursor-pointer pt-3 lg:pl-2 lg:w-24" // Ancho mayor en pantallas grandes
       />
+
+      {/* Nombre de la empresa */}
+      <span className="text-white font-bold text-lg sm:text-xl lg:text-2xl" style={{ fontFamily: 'Bodoni Moda, serif' }}>
+        SERVILLA
+      </span>
     </Link>
 
     {/* Botón de Rastreo guías */}

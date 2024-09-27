@@ -5,6 +5,10 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600&display=swap"
+            rel="stylesheet"
+        />
         {/* Etiqueta global del sitio (gtag.js) - Google Analytics */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
         <script dangerouslySetInnerHTML={{ __html: ` window.dataLayer = window.dataLayer || [];

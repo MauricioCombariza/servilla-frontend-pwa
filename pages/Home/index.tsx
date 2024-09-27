@@ -71,7 +71,7 @@ export default function Home() {
           </div>
         </header>
 
-        <section id="inicio" className="pt-24 pb-12 bg-darkser text-white">
+        <section id="inicio" className="pt-24 pb-12 bg-ser text-white">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap items-center">
             <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
@@ -79,7 +79,7 @@ export default function Home() {
               <p className="text-xl mb-8">Optimice su logística y aumente la satisfacción del cliente con Servilla</p>
               
               <div className="flex items-center space-x-4">
-                <a href="#contacto" className="bg-ser hover:bg-lightser text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block">
+                <a href="#contacto" className="bg-darkser hover:bg-lightser text-white font-bold py-3 px-6 rounded-full transition duration-300 inline-block">
                   Solicitar Información
                 </a>
 
