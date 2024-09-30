@@ -176,6 +176,33 @@ export const fetchUserRole = async (id_user:string) => {
   }
 };
 
+export const fetchUserClient = async (id_user:string) => {
+  if (!id_user) {
+    console.error('No user ID provided');
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from('usuarios') // Asume que tu tabla se llama 'usuarios'
+    .select('rol') // Asume que la columna que contiene el rol se llama 'rol'
+    .eq('id_uuid', id_user) // Asume que la columna que quieres comparar se llama 'id_uuid'
+    .single(); // Utiliza .single() si esperas un único resultado
+
+  if (error) {
+    console.error('Error fetching user role:', error);
+    return;
+  }
+
+  if (data) {
+    console.log('User role:', data.rol);
+    return data.rol;
+  } else {
+    console.log('User not found');
+    return null;
+  }
+};
+
+
 export const fetchUserCodMen = async (id_user:string) => {
   if (!id_user) {
     console.error('No user ID provided');
@@ -201,5 +228,28 @@ export const fetchUserCodMen = async (id_user:string) => {
     return null;
   }
 };
+
+
+const max_serial = async () => {
+  // Obtener el valor máximo de 'id' en la tabla 'suborders'
+  const { data, error } = await supabase
+    .from('suborders')
+    .select('id')
+    .order('id', { ascending: false })
+    .limit(1);
+
+  if (error) {
+    console.error('Error al obtener el id mayor:', error);
+    return null;
+  }
+
+  const id_mayor = data.length > 0 ? data[0].id : 0; // Asignar 0 si no hay registros
+  const serial = 7210000000 + id_mayor + 1; // Generar el serial
+
+  return serial;
+};
+
+export default max_serial;
+
 
 

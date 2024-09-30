@@ -2,8 +2,10 @@ import { useMachine } from '@xstate/react';
 import automateMachine from '../../Automatized/entregarPaquetes';
 import React, { useState, ChangeEvent, use } from 'react';
 import IngresoAdmon from './aministracion/IngresoAdmon';
-import ModulosAdmon from './aministracion/ModulosAdmon';
+import IngresoClientes from './clientes/IngresoClientes';
 import MenuInventario from './aministracion/MenuInventario';
+import ModulosAdmon from './aministracion/ModulosAdmon'; 
+import ModulosCientes from './clientes/ModulosClientes';
 import Modulos from './base/Modulos';
 import Ingreso from './base/Ingreso';
 import IngresarProducto from './aministracion/IngresarProducto';
@@ -28,6 +30,7 @@ import { handleFoto_base } from '../../utils/funciones/handleFoto';
 import WhatsApp from './procesos/WhatsApp';
 import { supabase } from '@/supabase';
 import { fetchUserRole } from '@/utils/funciones/funcionesAdmon';
+import NuevaOrden from './clientes/NuevaOrden';
 
 interface ValidateCredentialsResult {
   rol: number; // Ajusta el tipo según sea necesario
@@ -90,10 +93,16 @@ const YourPage = () => {
       send({ type: 'CAJONERAS' });
     };
 
+    const nueva_orden = () => {
+      send({ type: 'NUEVAORDEN' });
+    };
+
     const modulos_admon = () => {
       send({ type: 'MODULOSADMON' });
     }
-
+    const modulos_clientes = () => {
+      send({ type: 'MODULOS_CLIENTES' });
+    }
     const pistoleo = () => {
       send({ type: 'PISTOLEO' });
     };
@@ -106,6 +115,10 @@ const YourPage = () => {
       send({ type: 'WHATSAPP' });
     };
     const ordenes = () => {
+      send({ type: 'ORDENES' });
+    };
+
+    const ingreso_ordenes = () => {
       send({ type: 'ORDENES' });
     };
 
@@ -240,9 +253,12 @@ const YourPage = () => {
             {current.matches('ingresar_producto') && <IngresarProducto handleInitial={handleInitial} send={send} handleCancel={handleCancel} />}
             {current.matches('inventario') && <Inventario handleInitial={handleInitial} send={send} handleCancel={handleCancel} />}
             {current.matches('ingreso_admon') && <IngresoAdmon send={send} handleInitial={handleInitial} setUsername={setUsername} setRol={setRol} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />}
-            {current.matches('cambio_contrasena') && <CambioContrasena handleInitial={handleInitial} />} 
+            {current.matches('ingreso_clientes') && <IngresoClientes send={send} handleInitial={handleInitial} setUsername={setUsername} setRol={setRol} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />}
+            {current.matches('cambio_contrasena') && <CambioContrasena handleInitial={handleInitial} />}
+            {current.matches('nueva_orden') && <NuevaOrden handleInitial={handleInitial} />} 
             {current.matches('ordenes') && <Ordenes order={order} id_cliente={id_cliente} handleInitial={handleInitial} setIdCliente={setIdCliente} setOrder={setOrder} handleFileChange={handleFileChange} handleUploadOrders={handleUploadOrdersBase} handleCancel={handleCancel} />}
             {current.matches('modulos_admon') && <ModulosAdmon rol={rol} handleInitial={handleInitial} cajoneras={cajoneras} pistoleo={pistoleo} ordenes={ordenes} menu_inventario={menu_inventario} dinero={dinero} whatsapp={whatsapp} handleCancel={handleCancel}/>}
+            {current.matches('modulos_clientes') && <ModulosCientes rol={rol} handleInitial={handleInitial} nuevaOrden={nueva_orden} handleCancel={handleCancel}/>}
             {current.matches('datos') && <Datos paymentMethod={paymentMethod} handleInitial={handleInitial} setPaymentMethod={setPaymentMethod} guideNumber={guideNumber} handleCancel={handleCancel} setGuideNumber={setGuideNumber} send={send} />}
             {current.matches('nequi') && <Nequi consignee={consignee} handleInitial={handleInitial} setModuloSiguiente={setModuloSiguiente} setConsignee={setConsignee} value={value} setValue={setValue} handleFoto={handleFoto} handleDatos={handleDatos} handleCancel={handleCancel} />}
             {current.matches('efectivo') && <Efectivo consignee={consignee} handleInitial={handleInitial} setPaymentMethod={setPaymentMethod} setConsignee={setConsignee} setModuloSiguiente={setModuloSiguiente} value={value} setValue={setValue} handleFoto={handleFoto} handleDatos={handleDatos} handleCancel={handleCancel} />}

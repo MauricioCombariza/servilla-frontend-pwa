@@ -10,12 +10,19 @@ const automateMachine = createMachine({
         ADMONROL: 'modulos_admon',
         MENSAJEROS: 'ingreso',
         MENAUTH: 'datos',
-        CLIENTES: 'clientes',
+        CLIENTES: 'ingreso_clientes',
       }
     },
     ingreso_admon: {
       on: {
         START: 'modulos_admon',
+        CAMBIOCONTRASENA: 'cambio_contrasena',
+        INITIAL:'modulos',
+      }
+    },
+    ingreso_clientes: {
+      on: {
+        START: 'modulos_clientes',
         CAMBIOCONTRASENA: 'cambio_contrasena',
         INITIAL:'modulos',
       }
@@ -39,6 +46,25 @@ const automateMachine = createMachine({
         ADMINISTRACION: 'administracion',
         INITIAL:'modulos',
       },
+    },
+    modulos_clientes: {
+      on: {
+        NUEVAORDEN: 'nueva_orden',
+        CANCEL: 'modulos_clientes',
+        INITIAL:'modulos',
+    },
+    },
+    ingreso_ordenes: {
+      on: {
+        CANCEL: 'modulos_clientes',
+        INITIAL:'modulos',
+        },
+    },
+    nueva_orden: {
+      on: {
+        MODULOSCLIENTES: 'modulos_clientes',
+        INITIAL:'modulos',
+      }
     },
     modulos_admon: {
       on: {

@@ -70,7 +70,7 @@ const Modulos = ({ send, setRol, setCodMen, handleInitial, setUsername }: Modulo
       };
   
       const clientes = () => {
-        send({ type: 'FINALIZAR' });
+        send({ type: 'CLIENTES' });
       };
   
     return (
