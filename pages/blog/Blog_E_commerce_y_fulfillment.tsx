@@ -1,4 +1,12 @@
-import BlogTemplate from "./BlogTemplate";
+import BlogTemplate from "../Blog/BlogTemplate";
+
+export const metadata = {
+  title: "Importancia del fulfillment en el desarrollo del ecommerce",
+  subtitle: "Qué es fulfillment y su importancia en el desarrollo de un ecommerce",
+  author: "Mauricio Combariza",
+  date: "2024-09-30"
+};
+
 export default function BlogEcommerceTemplate() {
   const blogData = {
     title: "Importancia del fulfillment en el desarrollo del ecommerce",

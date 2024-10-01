@@ -7,8 +7,8 @@ import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import HighQualityIcon from '@mui/icons-material/HighQuality';
 import LockIcon from '@mui/icons-material/Lock';
 import PedalBikeIcon from '@mui/icons-material/PedalBike';
-import MailIcon from '@mui/icons-material/Mail';
 import ArticleIcon from '@mui/icons-material/Article';
+import MailIcon from '@mui/icons-material/Mail';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import AttachEmailIcon from '@mui/icons-material/AttachEmail';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
@@ -41,6 +41,13 @@ const horizontalNavItems: ListType[] = [
     {  icon: <LocalPhoneIcon sx={{ color:{xs:"green", sm:"black"} }}/>,
       title: "Contactenos",
       link: "/Contactenos",
+      private: false,
+      id:3,
+      className: ''
+    },
+    {  icon: <ArticleIcon sx={{ color:{xs:"green", sm:"black"} }}/>,
+      title: "Blogs",
+      link: "/Blog",
       private: false,
       id:3,
       className: ''
@@ -102,11 +109,20 @@ const horizontalNavItems: ListType[] = [
         className: ''
     },
     {
+        icon: <ArticleIcon sx={{ color:{xs:"green", sm:"white"} }} />,
+        title: "Blogs",
+        link: "/Blog",
+        private: false,
+        nestedServ: true,
+        id:402,
+        className: ''
+    },
+    {
       icon: <LocalPhoneIcon sx={{ color:{xs:"green", sm:"white"} }}/>,
       title: "Contactenos",
       link: "/Contactenos",
       private: false,
-      id:402,
+      id:403,
       className: ''
     },
     {
@@ -114,7 +130,7 @@ const horizontalNavItems: ListType[] = [
         title: "Ingresar",
         link: "/Ingresar",
         private: false,
-        id:403,
+        id:404,
         className: ''
     },
     {
@@ -122,7 +138,7 @@ const horizontalNavItems: ListType[] = [
         title: "Registrarse",
         link: "/Registrarse",
         private: false,
-        id:404,
+        id:405,
         nested: false,
         className: ''
     },
