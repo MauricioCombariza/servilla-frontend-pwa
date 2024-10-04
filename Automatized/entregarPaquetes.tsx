@@ -50,9 +50,16 @@ const automateMachine = createMachine({
     modulos_clientes: {
       on: {
         NUEVAORDEN: 'nueva_orden',
+        INVENTARIOCLIENTE: 'inventario_cliente',
         CANCEL: 'modulos_clientes',
         INITIAL:'modulos',
     },
+  },
+    inventario_cliente: {
+      on: {
+        CANCEL: 'modulos_clientes',
+        INITIAL:'modulos',
+      }
     },
     ingreso_ordenes: {
       on: {

@@ -71,7 +71,7 @@ export default function Home() {
           </div>
         </header>
 
-        <section id="inicio" className="pt-24 pb-12 bg-ser text-white">
+        <section id="inicio" className="pt-24 pb-12 bg-ser_40 text-white">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap items-center">
             <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
@@ -200,7 +200,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contacto" className="py-16 bg-ser text-white">
+        <section id="contacto" className="py-16 bg-ser_40 text-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">Contáctenos</h2>
             <div className="flex flex-wrap -mx-4">
