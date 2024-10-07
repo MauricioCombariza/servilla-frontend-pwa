@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { AuthProvider } from "@/Auth";
 import { NavBar } from '@/components/NavBar/NavBarTailwind';
 import { InstallBanner } from '@/components/InstallBanner';
+import 'regenerator-runtime/runtime';
 import "@/styles/globals.css";
 import '@fontsource/inter'
 import { useEffect } from 'react';

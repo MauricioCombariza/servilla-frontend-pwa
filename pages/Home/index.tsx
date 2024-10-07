@@ -113,21 +113,21 @@ export default function Home() {
         </section>
 
         <section id="servicios" className="py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 mt-3">
             <h2 className="text-3xl font-bold text-center mb-12">Nuestros Servicios</h2>
             <YearsInMarket />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <div className="bg-ser_40 p-6 rounded-lg shadow-lg text-center">
                 <FaWarehouse className="text-5xl text-ser mb-4 mx-auto" />
                 <h3 className="text-xl font-semibold mb-2">Almacenamiento Inteligente</h3>
                 <p>Gestión de inventario eficiente y segura con tecnología de punta.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <div className="bg-ser_40 p-6 rounded-lg shadow-lg text-center">
                 <FaTruck className="text-5xl text-ser mb-4 mx-auto" />
                 <h3 className="text-xl font-semibold mb-2">Envíos Rápidos</h3>
                 <p>Entregas rápidas y precisas para maximizar la satisfacción del cliente.</p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <div className="bg-ser_40 p-6 rounded-lg shadow-lg text-center">
                 <FaChartLine className="text-5xl text-ser mb-4 mx-auto" />
                 <h3 className="text-xl font-semibold mb-2">Análisis Avanzado</h3>
                 <p>Informes detallados y análisis predictivo para optimizar su cadena de suministro.</p>
@@ -168,28 +168,28 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12">Ventajas de Servilla</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-lg flex items-start">
+              <div className="bg-ser_40 p-6 rounded-lg shadow-lg flex items-start">
                 <FaCog className="text-5xl text-ser mr-4" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Tecnología de Vanguardia</h3>
                   <p>Nos conectamos a tu página web, y recibimos tus pedidos en tiempo real</p>
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg flex items-start">
+              <div className="bg-ser_40 p-6 rounded-lg shadow-lg flex items-start">
                 <FaGlobe className="text-5xl text-ser mr-4" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Alcance Global</h3>
                   <p>Ofrecemos envíos nacionales e internacionales, maximizando tu alcance.</p>
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg flex items-start">
+              <div className="bg-ser_40 p-6 rounded-lg shadow-lg flex items-start">
                 <FaTools className="text-5xl text-ser mr-4" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Flexibilidad y Escalabilidad</h3>
                   <p>Adaptamos nuestros servicios a tus necesidades y crecemos contigo.</p>
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg flex items-start">
+              <div className="bg-ser_40 p-6 rounded-lg shadow-lg flex items-start">
                 <FaHeadset className="text-5xl text-ser mr-4" />
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Soporte Dedicado</h3>
