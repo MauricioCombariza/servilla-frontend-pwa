@@ -23,15 +23,16 @@ export default function DataCapture() {
       recognition.interimResults = true;
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
-        const interimTranscript = Array.from(event.results)
-          .map(result => result[0].transcript)
-          .join('');
+        const results = Array.from(event.results);
+        const finalTranscript = results[results.length - 1][0].transcript;
 
-        if (inputTarget === 'address') {
-          setAddress(interimTranscript);  // Actualiza la dirección en tiempo real
-        } else if (inputTarget === 'numeral') {
-          setNumeral(interimTranscript);  // Actualiza el numeral en tiempo real
-          console.log('Nuevo numeral:', interimTranscript);
+        if (event.results[event.results.length - 1].isFinal) { // Solo si es final
+          if (inputTarget === 'address') {
+            setAddress(finalTranscript);  // Actualiza la dirección en tiempo real
+          } else if (inputTarget === 'numeral') {
+            setNumeral(finalTranscript);  // Actualiza el numeral en tiempo real
+            console.log('Nuevo numeral:', finalTranscript);
+          }
         }
       };
 
@@ -101,7 +102,7 @@ export default function DataCapture() {
     if (isListening && inputTarget === target) {
       setIsListening(false);  // Detiene la captura
       setInputTarget(null);
-    } else {
+    } else if (!isListening) { // Solo activa si no está escuchando
       setInputTarget(target);  // Indica cuál input estamos llenando
       setIsListening(true);    // Inicia la captura
     }
@@ -179,6 +180,4 @@ export default function DataCapture() {
       </div>
     </Layout>
   );
-    
-  }
-
+}
