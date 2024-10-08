@@ -16,44 +16,44 @@ export default function DataCapture() {
     let recognition: SpeechRecognition | null = null;
 
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-      const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognition = new SpeechRecognitionConstructor();
-      recognition.lang = 'es-ES';
-      recognition.continuous = true; // Cambiado a continuo para capturar en tiempo real
-      recognition.interimResults = true;
-
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
-        const interimTranscript = Array.from(event.results)
-          .map(result => result[0].transcript)
-          .join('');
-
-        if (inputTarget === 'address') {
-          setAddress(interimTranscript); // Actualiza la dirección en tiempo real
-        } else if (inputTarget === 'numeral') {
-          setNumeral(interimTranscript); // Actualiza el numeral en tiempo real
-          console.log('Nuevo numeral:', interimTranscript);
-        }
-      };
-
-      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-        console.error('Error en el reconocimiento de voz:', event.error);
-        setIsListening(false);
-      };
-
-      if (isListening) {
-        recognition.start();
-      } else {
-        recognition.abort();
-      }
-
-      return () => {
-        if (recognition) {
+        const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognitionConstructor();
+        recognition.lang = 'es-ES';
+        recognition.continuous = true; // Cambiado a continuo para capturar en tiempo real
+        recognition.interimResults = true;
+  
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
+          const interimTranscript = Array.from(event.results)
+            .map(result => result[0].transcript)
+            .join('');
+  
+          if (inputTarget === 'address') {
+            setAddress(interimTranscript); // Actualiza la dirección en tiempo real
+          } else if (inputTarget === 'numeral') {
+            setNumeral(interimTranscript); // Actualiza el numeral en tiempo real
+            console.log('Nuevo numeral:', interimTranscript);
+          }
+        };
+  
+        recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+          console.error('Error en el reconocimiento de voz:', event.error);
+          setIsListening(false);
+        };
+  
+        if (isListening) {
+          recognition.start();
+        } else {
           recognition.abort();
         }
-      };
-    }
-  }, [isListening, inputTarget]);
-
+  
+        return () => {
+          if (recognition) {
+            recognition.abort();
+          }
+        };
+      }
+    }, [isListening, inputTarget]);
+  
   // Configurar Quagga para la lectura del código de barras
   const startBarcodeScanner = async () => {
     if (!isCameraActive && videoRef.current) {
@@ -68,7 +68,7 @@ export default function DataCapture() {
             type: 'LiveStream',
             target: videoRef.current,
             constraints: {
-              facingMode: 'user',
+              facingMode: 'environment',
               width: { ideal: 1280 },
               height: { ideal: 720 },
             },

@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import Image from 'next/image';
+import Image from 'next/image'
+import Link from 'next/link';;
 import Head from 'next/head';
 import MapComponent from './MapComponents';
 import YearsInMarket from './YearsInMarket';
 import { supabase } from '@/supabase';
-import { FaTruck, FaWarehouse, FaChartLine, FaWhatsapp, FaCog, FaGlobe, FaTools, FaHeadset } from 'react-icons/fa';
+import { FaTruck, FaWarehouse, FaChartLine, FaWhatsapp, FaCog, FaGlobe, FaTools, FaHeadset, FaPlay } from 'react-icons/fa';
 
 export default function Home() {
   const [name, setName] = useState('');
@@ -248,10 +249,18 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* Triángulo Azul Flotante */}
+          <Link href="/Speech"
+              className="fixed bottom-4 left-4 bg-ser text-white rounded-full p-3 hover:bg-blue-600 transition duration-300 z-50 flex items-center justify-center"
+              aria-label="Ir a Speech"
+            >
+              <FaPlay className="text-2xl" />
+            </Link>
+          
          {/* WhatsApp Button */}
          <a
           href="https://wa.me/5716262314?text=Hola%2C%20quisiera%20más%20información"
-          className="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 hover:bg-green-600 transition duration-300 z-50"
+          className="fixed bottom-3 right-3 bg-green-500 text-white rounded-full p-3 hover:bg-green-600 transition duration-300 z-50"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp"
