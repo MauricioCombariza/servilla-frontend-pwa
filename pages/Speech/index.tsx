@@ -14,31 +14,38 @@ export default function DataCapture() {
 
   useEffect(() => {
     let recognition: SpeechRecognition | null = null;
+    let previousTranscript = '';
 
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-        const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
-        recognition = new SpeechRecognitionConstructor();
-        recognition.lang = 'es-ES';
-        recognition.continuous = true; // Cambiado a continuo para capturar en tiempo real
-        recognition.interimResults = true;
-  
-        recognition.onresult = (event: SpeechRecognitionEvent) => {
-          const interimTranscript = Array.from(event.results)
-            .map(result => result[0].transcript)
-            .join('');
-  
+      const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognitionConstructor();   
+
+      recognition.lang = 'es-ES';
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      recognition.onresult = (event: SpeechRecognitionEvent) => {
+        const interimTranscript = Array.from(event.results)
+          .map(result => result[0].transcript)
+          .join('');
+
+        // Comparar con la transcripción anterior y actualizar solo si hay un cambio significativo
+        if (interimTranscript !== previousTranscript) {
+          previousTranscript = interimTranscript;
+
           if (inputTarget === 'address') {
-            setAddress(interimTranscript); // Actualiza la dirección en tiempo real
+            setAddress(interimTranscript);
           } else if (inputTarget === 'numeral') {
-            setNumeral(interimTranscript); // Actualiza el numeral en tiempo real
+            setNumeral(interimTranscript);
             console.log('Nuevo numeral:', interimTranscript);
           }
-        };
-  
-        recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-          console.error('Error en el reconocimiento de voz:', event.error);
-          setIsListening(false);
-        };
+        }
+      };
+
+      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+        console.error('Error en el reconocimiento de voz:', event.error);
+        setIsListening(false);
+      };
   
         if (isListening) {
           recognition.start();
@@ -58,7 +65,7 @@ export default function DataCapture() {
   const startBarcodeScanner = async () => {
     if (!isCameraActive && videoRef.current) {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
         videoRef.current.srcObject = stream;
         setIsCameraActive(true);
   
