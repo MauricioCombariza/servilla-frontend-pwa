@@ -4,11 +4,11 @@ import { useState, useEffect, useRef } from 'react';
 import Quagga from '@ericblade/quagga2';
 
 export default function DataCapture() {
-  const [serial, setSerial] = useState('');      // Para simular la captura del serial
-  const [address, setAddress] = useState('');    // Para capturar la dirección por voz
-  const [numeral, setNumeral] = useState('');    // Para capturar el numeral por voz
+  const [serial, setSerial] = useState(''); // Para simular la captura del serial
+  const [address, setAddress] = useState(''); // Para capturar la dirección por voz
+  const [numeral, setNumeral] = useState(''); // Para capturar el numeral por voz
   const [isListening, setIsListening] = useState(false);
-  const [inputTarget, setInputTarget] = useState<'address' | 'numeral' | null>(null);  // Para saber qué input se está completando
+  const [inputTarget, setInputTarget] = useState<'address' | 'numeral' | null>(null); // Para saber qué input se está completando
   const videoRef = useRef<HTMLVideoElement | null>(null); // Ref para el video de Quagga
   const [isCameraActive, setIsCameraActive] = useState(false); // Estado para controlar la cámara
 
@@ -19,20 +19,19 @@ export default function DataCapture() {
       const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
       recognition = new SpeechRecognitionConstructor();
       recognition.lang = 'es-ES';
-      recognition.continuous = true;   // Cambiado a continuo para capturar en tiempo real
+      recognition.continuous = true; // Cambiado a continuo para capturar en tiempo real
       recognition.interimResults = true;
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
-        const results = Array.from(event.results);
-        const finalTranscript = results[results.length - 1][0].transcript;
+        const interimTranscript = Array.from(event.results)
+          .map(result => result[0].transcript)
+          .join('');
 
-        if (event.results[event.results.length - 1].isFinal) { // Solo si es final
-          if (inputTarget === 'address') {
-            setAddress(finalTranscript);  // Actualiza la dirección en tiempo real
-          } else if (inputTarget === 'numeral') {
-            setNumeral(finalTranscript);  // Actualiza el numeral en tiempo real
-            console.log('Nuevo numeral:', finalTranscript);
-          }
+        if (inputTarget === 'address') {
+          setAddress(interimTranscript); // Actualiza la dirección en tiempo real
+        } else if (inputTarget === 'numeral') {
+          setNumeral(interimTranscript); // Actualiza el numeral en tiempo real
+          console.log('Nuevo numeral:', interimTranscript);
         }
       };
 
@@ -65,11 +64,11 @@ export default function DataCapture() {
           type: 'LiveStream',
           target: videoRef.current, // referencia del elemento de video
           constraints: {
-            facingMode: 'environment' // Usar la cámara trasera
+            facingMode: 'environment', // Usar la cámara trasera
           },
         },
         decoder: {
-          readers: ['code_128_reader'] // Puedes agregar más lectores según sea necesario
+          readers: ['code_128_reader'], // Puedes agregar más lectores según sea necesario
         },
       }, (err: any) => {
         if (err) {
@@ -100,11 +99,11 @@ export default function DataCapture() {
 
   const handleVoiceInput = (target: 'address' | 'numeral') => {
     if (isListening && inputTarget === target) {
-      setIsListening(false);  // Detiene la captura
+      setIsListening(false); // Detiene la captura
       setInputTarget(null);
-    } else if (!isListening) { // Solo activa si no está escuchando
-      setInputTarget(target);  // Indica cuál input estamos llenando
-      setIsListening(true);    // Inicia la captura
+    } else {
+      setInputTarget(target); // Indica cuál input estamos llenando
+      setIsListening(true); // Inicia la captura
     }
   };
 
@@ -166,7 +165,7 @@ export default function DataCapture() {
                 />
                 <button
                   onClick={() => handleVoiceInput('numeral')}
-                  className="w-full bg-base bg-lightser hover:bg-darkser text-white p-2 rounded mt-2"
+                  className="w-full bg-lightser hover:bg-darkser text-white p-2 rounded mt-2"
                 >
                   {isListening && inputTarget === 'numeral' ? 'Detener Captura' : 'Capturar Numeral por Voz'}
                 </button>
