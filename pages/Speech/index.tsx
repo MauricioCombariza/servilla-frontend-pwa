@@ -80,9 +80,11 @@ export default function DataCapture() {
               height: { ideal: 720 },
             },
           },
-          decoder: {
-            readers: ['code_128_reader'], // ... otros lectores
-          },
+            decoder: {
+                readers: ['code_128_reader', 'ean_reader', 'code_39_reader'], // Agregar más lectores si es necesario
+                // debug: true // Activar el modo de depuración para ver más detalles
+            },
+            locate: true,
         }, (err) => {
           if (err) {
             console.error('Error al inicializar Quagga:', err);
