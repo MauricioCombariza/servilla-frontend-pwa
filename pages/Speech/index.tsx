@@ -55,48 +55,71 @@ export default function DataCapture() {
   }, [isListening, inputTarget]);
 
   // Configurar Quagga para la lectura del código de barras
-  const startBarcodeScanner = () => {
+  const startBarcodeScanner = async () => {
     if (!isCameraActive && videoRef.current) {
-      setIsCameraActive(true); // Activa la cámara
-      Quagga.init({
-        inputStream: {
-          name: 'Live',
-          type: 'LiveStream',
-          target: videoRef.current, // referencia del elemento de video
-          constraints: {
-            facingMode: 'environment', // Usar la cámara trasera
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+        videoRef.current.srcObject = stream;
+        setIsCameraActive(true);
+  
+        Quagga.init({
+          inputStream: {
+            name: 'Live',
+            type: 'LiveStream',
+            target: videoRef.current,
+            constraints: {
+              facingMode: 'user',
+              width: { ideal: 1280 },
+              height: { ideal: 720 },
+            },
           },
-        },
-        decoder: {
-          readers: ['code_128_reader'], // Puedes agregar más lectores según sea necesario
-        },
-      }, (err: any) => {
-        if (err) {
-          console.error('Error al iniciar Quagga:', err);
-          return;
-        }
-        console.log('Quagga listo para escanear...');
-        Quagga.start();
-
-        Quagga.onDetected((data: any) => {
-          console.log('Código de barras detectado:', data);
-          setSerial(data.codeResult.code); // Establece el serial capturado
-          stopBarcodeScanner(); // Detiene el escáner después de la lectura
+          decoder: {
+            readers: ['code_128_reader'], // ... otros lectores
+          },
+        }, (err) => {
+          if (err) {
+            console.error('Error al inicializar Quagga:', err);
+            return;
+          }
+          console.log('Quagga listo para escanear...');
+          Quagga.start();
+  
+          Quagga.onDetected((data) => {
+            console.log('Código de barras detectado:', data);
+            const detectedCode = data.codeResult.code;
+  
+            if (detectedCode) {
+              setSerial(detectedCode);
+            } else {
+              console.error('No se pudo obtener el código de barras.');
+            }
+  
+            stopBarcodeScanner(); // Detener el escáner después de detectar un código
+          });
         });
-      });
+      } catch (error) {
+        console.error('Error al obtener acceso a la cámara:', error);
+        // Manejar errores de permiso denegado u otros errores (por ejemplo, mostrar una alerta)
+      }
     } else {
-      stopBarcodeScanner(); // Si ya está activa, detén la cámara
+      // Si la cámara ya está activa, la detiene
+      stopBarcodeScanner();
     }
   };
-
+  
   const stopBarcodeScanner = () => {
     Quagga.stop();
     if (videoRef.current) {
-      videoRef.current.srcObject = null; // Detener el video
+      // Detener el video y liberar la cámara
+      const stream = videoRef.current.srcObject as MediaStream;
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop()); // Detener todos los tracks de video
+      }
+      videoRef.current.srcObject = null; // Limpiar la referencia del objeto de video
     }
     setIsCameraActive(false); // Desactiva la cámara
   };
-
+  
   const handleVoiceInput = (target: 'address' | 'numeral') => {
     if (isListening && inputTarget === target) {
       setIsListening(false); // Detiene la captura
@@ -123,7 +146,7 @@ export default function DataCapture() {
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div className="p-8">
             <h2 className="text-2xl font-bold text-darkser mb-2">Captura de Datos</h2>
-            <div className="space-y-2">
+            <div className="space-y-4">
               <div>
                 <button onClick={startBarcodeScanner} className="w-full bg-ser hover:bg-darkser text-white p-2 rounded">
                   {isCameraActive ? 'Detener Escaneo' : 'Escanear Serial'}
@@ -136,7 +159,8 @@ export default function DataCapture() {
                   className="w-full p-2 border rounded bg-gray-100"
                   placeholder="Serial"
                 />
-                <video ref={videoRef} style={{ width: '100%', height: 'auto' }} autoPlay></video>
+                {/* <video ref={videoRef} style={{ width: '100%', height: 'auto' }} autoPlay></video> */}
+                <video ref={videoRef} style={{ width: '100%', height: 'auto' }} autoPlay muted /> 
               </div>
               <div>
                 {/* Campo Dirección */}
