@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, MouseEvent, useEffect, useRef, useState } from 
 import { API_SER } from '@/pages/api';
 import { buscarSerial } from '@/utils/funciones/funcionesManejoTablas';
 import { Layout } from '@/components/Layout';
-import { BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
+import { BrowserMultiFormatReader } from '@zxing/library';
 
 interface DatosProps {
   setGuideNumber: (guideNumber: string) => void;
@@ -23,7 +23,8 @@ const Datos: FC<DatosProps> = ({
   handleInitial,
   setGuideNumber,
 }) => {
-  const [scanning, setScanning] = useState(false); // Estado para manejar el escaneo
+  const [scanning, setScanning] = useState(false);
+  const [scanError, setScanError] = useState<string | null>(null); // Estado para manejar errores
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handlePaymentMethodChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -41,59 +42,64 @@ const Datos: FC<DatosProps> = ({
 
       if (!response) {
         alert('El serial no existe');
-        throw new Error(`HTTP error! status: ${response}`);
-      } else {
-        const moneyResponse = await buscarSerial(guideNumber, 'estado_dinero');
-        if (moneyResponse) {
-          return alert('El serial ya fue ingresado como cancelado');
-        }
+        throw new Error(`Serial not found: ${guideNumber}`);
+      }
 
-        switch (paymentMethod) {
-          case 'Nequi':
-            send({ type: 'NEQUI' });
-            break;
-          case 'Efectivo':
-            send({ type: 'EFECTIVO' });
-            break;
-          case 'Efectivo_Nequi':
-            send({ type: 'NEQUI_EFECTIVO' });
-            break;
-          case 'Otra':
-            send({ type: 'OTRA' });
-            break;
-          case 'Sin_Cobro':
-            send({ type: 'SIN_COBRO' });
-            break;
-          case 'Devolucion':
-            send({ type: 'DEVOLUCION' });
-            break;
-          default:
-            console.error('Método de pago no reconocido');
-        }
+      const moneyResponse = await buscarSerial(guideNumber, 'estado_dinero');
+      if (moneyResponse) {
+        return alert('El serial ya fue ingresado como cancelado');
+      }
+
+      // Envía la acción según el método de pago seleccionado
+      switch (paymentMethod) {
+        case 'Nequi':
+          send({ type: 'NEQUI' });
+          break;
+        case 'Efectivo':
+          send({ type: 'EFECTIVO' });
+          break;
+        case 'Efectivo_Nequi':
+          send({ type: 'NEQUI_EFECTIVO' });
+          break;
+        case 'Otra':
+          send({ type: 'OTRA' });
+          break;
+        case 'Sin_Cobro':
+          send({ type: 'SIN_COBRO' });
+          break;
+        case 'Devolucion':
+          send({ type: 'DEVOLUCION' });
+          break;
+        default:
+          alert('Método de pago no reconocido');
       }
     } catch (error) {
-      console.error('There was a problem with the fetch operation: ', error);
+      console.error('Error en la operación de búsqueda: ', error);
     }
   };
 
-  // Efecto para manejar la inicialización y el cierre del escaneo
   useEffect(() => {
     if (scanning) {
       const codeReader = new BrowserMultiFormatReader();
-      codeReader.decodeFromVideoDevice(null, videoRef.current!, (result, error) => {
-        if (result) {
-          setGuideNumber(result.getText());
-          alert(`Código QR escaneado: ${result.getText()}`);
-          setScanning(false);
-        }
-        if (error) {
-          console.error(error);
-        }
-      }).catch(err => {
-        console.error(err);
-      });
 
-      // Cleanup para detener el escaneo al desmontar el componente
+      const startScanning = async () => {
+        try {
+          await codeReader.decodeFromVideoDevice(null, videoRef.current!, (result) => {
+            if (result) {
+              setGuideNumber(result.getText());
+              alert(`Código QR escaneado: ${result.getText()}`);
+              setScanning(false);
+              setScanError(null); // Limpiar el error si el escaneo es exitoso
+            }
+          });
+        } catch (error) {
+          setScanError('Error al escanear el código de barras. Inténtalo nuevamente.');
+          console.error('Error en el escaneo de código de barras:', error);
+        }
+      };
+
+      startScanning();
+
       return () => {
         codeReader.reset();
       };
@@ -131,6 +137,7 @@ const Datos: FC<DatosProps> = ({
             <select
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="paymentMethod"
+              value={paymentMethod} // Asegúrate de que el valor refleje el estado
               onChange={handlePaymentMethodChange}
             >
               <option value="Sin_Cobro">Sin Cobro</option>
@@ -180,12 +187,8 @@ const Datos: FC<DatosProps> = ({
         {/* Contenedor para el escaneo del código de barras */}
         {scanning && (
           <div>
-            <video
-              ref={videoRef}
-              style={{ width: '100%', height: '300px' }}
-              autoPlay
-              muted
-            />
+            <video ref={videoRef} style={{ width: '100%', height: '300px' }} autoPlay muted />
+            {scanError && <p className="text-red-500 text-center">{scanError}</p>}
           </div>
         )}
       </div>
@@ -194,5 +197,3 @@ const Datos: FC<DatosProps> = ({
 };
 
 export default Datos;
-
-

@@ -1,24 +1,14 @@
-import { useZxing } from "react-zxing";
-import { Layout } from "@/components/Layout";
+// pages/index.tsx
 
-const BarcodeScanner = () => {
-  const {
-    ref,
-    torch: { on, off, isOn, isAvailable },
-  } = useZxing();
+import React from 'react';
+import { BarcodeScanner } from '@/components/BarCodeScannerComponent';
 
+const Home: React.FC = () => {
   return (
-    <Layout>
-      <video ref={ref} />
-      {isAvailable ? (
-        <button onClick={() => (isOn ? off() : on())}>
-          {isOn ? "Turn off" : "Turn on"} torch
-        </button>
-      ) : (
-        <strong>Unfortunately, torch is not available on this device.</strong>
-      )}
-    </Layout>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <BarcodeScanner />
+    </div>
   );
 };
 
-export default BarcodeScanner;
+export default Home;
