@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layout } from '@/components/Layout';
 import { useSpeechRecognition } from '@/utils/speech/speech';
+import { BarCodeScanner } from '@/components/BarCodeScannerComponent';
 import { useBarcodeScanner } from '@/utils/speech/scanner';
 
 export default function DataCapture() {
@@ -25,20 +26,8 @@ export default function DataCapture() {
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div className="p-8">
             <h2 className="text-2xl font-bold text-darkser mb-2">Captura de Datos</h2>
-            <div className="space-y-4">
-              <div>
-                <button onClick={startScan} className="w-full bg-ser hover:bg-darkser text-white p-2 rounded">
-                  {isScanning ? 'Detener Escaneo' : 'Escanear Serial'}
-                </button>
-                <input
-                  type="text"
-                  value={serial}
-                  readOnly
-                  className="w-full p-2 border rounded bg-gray-100"
-                  placeholder="Serial"
-                />
-                <video ref={videoRef} style={{ width: '100%', height: 'auto' }} autoPlay muted /> 
-              </div>
+            <BarCodeScanner />
+            <div className="mt-4">
               <div>
                 <input
                   type="text"
