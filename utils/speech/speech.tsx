@@ -11,8 +11,8 @@ const useSpeechRecognition = (setAddress: React.Dispatch<React.SetStateAction<st
       const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
       const newRecognition = new SpeechRecognitionConstructor();
       newRecognition.lang = 'es-ES';
-      newRecognition.continuous = true;
-      newRecognition.interimResults = true;
+      newRecognition.continuous = false; // Cambiado a false para no escuchar continuamente
+      newRecognition.interimResults = false; // Cambiado a false para obtener solo el resultado final
       recognitionRef.current = newRecognition;
     }
 
@@ -39,17 +39,18 @@ const useSpeechRecognition = (setAddress: React.Dispatch<React.SetStateAction<st
 
     if (recognition && isListening) {
       const handleResult = (event: SpeechRecognitionEvent) => {
-        const interimTranscript = Array.from(event.results)
-          .map(result => result.item(0).transcript)
-          .join('');
-        
-        setTranscript(interimTranscript);
+        const currentTranscript = event.results[event.results.length - 1][0].transcript; // Solo obtener el resultado final
 
-        // Actualizar el estado del campo correspondiente según el inputTarget
-        if (inputTarget === 'address') {
-          setAddress(interimTranscript); // Actualizar dirección
-        } else if (inputTarget === 'numeral') {
-          setNumeral(interimTranscript); // Actualizar numeral
+        // Solo actualizar si el nuevo resultado es diferente del anterior
+        if (currentTranscript !== transcript) {
+          setTranscript(currentTranscript);
+
+          // Actualizar el estado del campo correspondiente según el inputTarget
+          if (inputTarget === 'address') {
+            setAddress(currentTranscript); // Actualizar dirección
+          } else if (inputTarget === 'numeral') {
+            setNumeral(currentTranscript); // Actualizar numeral
+          }
         }
       };
 
@@ -59,7 +60,7 @@ const useSpeechRecognition = (setAddress: React.Dispatch<React.SetStateAction<st
         recognition.removeEventListener('result', handleResult as EventListener);
       };
     }
-  }, [isListening, inputTarget, setAddress, setNumeral]);
+  }, [isListening, inputTarget, setAddress, setNumeral, transcript]); // Agregar 'transcript' a las dependencias
 
   return { isListening, inputTarget, transcript, handleVoiceInput };
 };
