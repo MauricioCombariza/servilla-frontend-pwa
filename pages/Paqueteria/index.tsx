@@ -1,10 +1,10 @@
 // /pages/index.tsx
-import { useState, FormEvent, ChangeEvent, useEffect } from 'react';
+import { useState, FormEvent, ChangeEvent, useEffect, useRef } from 'react';
 import { supabase } from '@/supabase';
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import { Layout } from '@/components/Layout';
-import BarcodeScannerModule from '@/components/BarcodeScannerModule';
+import { startScanner } from '@/components/BarCodeScannerComponent/scan';
 
 interface PaqueteriaResult {
   cod_sec: string;
@@ -18,6 +18,9 @@ const Home: NextPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [scanning, setScanning] = useState<boolean>(false);
   const [cameraPermission, setCameraPermission] = useState<'granted' | 'denied' | 'prompt'>('prompt');
+
+  // Referencia para el video del escáner
+  const scannerVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     checkCameraPermission();
@@ -97,10 +100,6 @@ const Home: NextPage = () => {
     }, 500);
   };
 
-  const stopScanner = () => {
-    setScanning(false);
-  };
-
   const handleScanButtonClick = () => {
     if (cameraPermission === 'granted') {
       setScanning(true);
@@ -109,11 +108,23 @@ const Home: NextPage = () => {
     }
   };
 
+  // Cuando scanning es true, se llama a startScanner para iniciar el escaneo en el video.
   useEffect(() => {
+    let stopScannerFn: () => void;
+    if (scanning && scannerVideoRef.current) {
+      stopScannerFn = startScanner({
+        videoElement: scannerVideoRef.current,
+        onDetected: handleDetected,
+        onError: (err) => {
+          console.error("Error en el escáner:", err);
+          setError("Error en el escaneo. Inténtalo nuevamente.");
+        },
+      });
+    }
     return () => {
-      setScanning(false);
+      if (stopScannerFn) stopScannerFn();
     };
-  }, []);
+  }, [scanning]);
 
   return (
     <Layout>
@@ -136,13 +147,21 @@ const Home: NextPage = () => {
             <div className="p-5">
               {scanning ? (
                 <div className="mb-5">
-                  <BarcodeScannerModule
-                    onDetected={handleDetected}
-                    onError={(err) => { console.error("Error en el escáner:", err); setError("Error en el escaneo."); }}
-                    stopScanner={stopScanner}
-                  />
+                  {/* Contenedor para el video del escáner */}
+                  <div className="relative">
+                    <video
+                      ref={scannerVideoRef}
+                      className="w-full h-64 bg-black rounded-lg overflow-hidden"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center text-white opacity-50">
+                      <p>Posiciona el código de barras en el centro</p>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-4/5 h-1/2 border-2 border-lightser border-dashed rounded-lg"></div>
+                    </div>
+                  </div>
                   <button
-                    onClick={stopScanner}
+                    onClick={() => setScanning(false)}
                     className="w-full bg-red-600 hover:bg-red-700 text-whiteser font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 text-lg shadow-md mt-4"
                   >
                     Cancelar Escaneo
@@ -198,7 +217,9 @@ const Home: NextPage = () => {
 
               {cameraPermission === 'denied' && !scanning && (
                 <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded mb-4">
-                  <p className="font-medium">Acceso a la cámara denegado. Por favor, activa los permisos en la configuración de tu navegador para usar el escáner.</p>
+                  <p className="font-medium">
+                    Acceso a la cámara denegado. Por favor, activa los permisos en la configuración de tu navegador para usar el escáner.
+                  </p>
                   <button 
                     onClick={requestCameraPermission}
                     className="mt-2 bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-3 rounded-md text-sm"
