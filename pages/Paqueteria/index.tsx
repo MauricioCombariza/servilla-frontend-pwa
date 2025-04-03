@@ -18,8 +18,32 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [scanning, setScanning] = useState<boolean>(false);
+  const [cameraPermission, setCameraPermission] = useState<'granted' | 'denied' | 'prompt'>('prompt');
   
   const videoRef = useRef<HTMLDivElement>(null);
+
+  // Comprobar el estado de los permisos al cargar
+  useEffect(() => {
+    checkCameraPermission();
+  }, []);
+
+  // Función para comprobar los permisos de la cámara
+  const checkCameraPermission = async () => {
+    try {
+      // Comprobar si la API de permisos está disponible
+      if (navigator.permissions && navigator.permissions.query) {
+        const result = await navigator.permissions.query({ name: 'camera' as PermissionName });
+        setCameraPermission(result.state as 'granted' | 'denied' | 'prompt');
+        
+        // Escuchar cambios en el estado de los permisos
+        result.addEventListener('change', () => {
+          setCameraPermission(result.state as 'granted' | 'denied' | 'prompt');
+        });
+      }
+    } catch (err) {
+      console.error("Error al comprobar permisos de cámara:", err);
+    }
+  };
 
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,8 +87,29 @@ const Home: NextPage = () => {
     setSerial(e.target.value);
   };
 
+  const requestCameraPermission = async () => {
+    try {
+      // Solicitar acceso a la cámara
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      
+      // Si llegamos aquí, el permiso fue concedido
+      setCameraPermission('granted');
+      
+      // Detener el stream ya que solo queríamos verificar el permiso
+      stream.getTracks().forEach(track => track.stop());
+      
+      // Iniciar el escáner
+      startScanner();
+    } catch (err) {
+      console.error("Error al solicitar permisos de cámara:", err);
+      setCameraPermission('denied');
+      setError("No se pudo acceder a la cámara. Por favor, verifica los permisos en tu navegador.");
+    }
+  };
+
   const startScanner = () => {
     setScanning(true);
+    setError(null);
 
     if (videoRef.current) {
       Quagga.init({
@@ -76,15 +121,22 @@ const Home: NextPage = () => {
             facingMode: "environment", // usar cámara trasera
             width: { min: 640 },
             height: { min: 480 },
+            aspectRatio: { min: 1, max: 2 },
           },
         },
+        locator: {
+          patchSize: "medium",
+          halfSample: true
+        },
+        numOfWorkers: navigator.hardwareConcurrency || 4,
         decoder: {
           readers: ["code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader", "codabar_reader", "upc_reader", "upc_e_reader"]
         },
         locate: true
       }, (err) => {
         if (err) {
-          setError("Error al iniciar el escáner. Por favor, intenta de nuevo.");
+          console.error("Error al iniciar Quagga:", err);
+          setError("Error al iniciar el escáner de códigos. Por favor, intenta de nuevo.");
           setScanning(false);
           return;
         }
@@ -96,6 +148,7 @@ const Home: NextPage = () => {
         if (result && result.codeResult) {
           const code = result.codeResult.code;
           if (code) {
+            console.log("Código detectado:", code);
             setSerial(code);
             stopScanner();
             // Buscar automáticamente al detectar un código
@@ -121,6 +174,14 @@ const Home: NextPage = () => {
       stopScanner();
     };
   }, []);
+
+  const handleScanButtonClick = () => {
+    if (cameraPermission === 'granted') {
+      startScanner();
+    } else {
+      requestCameraPermission();
+    }
+  };
 
   return (
     <Layout>
@@ -149,8 +210,13 @@ const Home: NextPage = () => {
                     className="w-full h-64 bg-black rounded-lg overflow-hidden"
                   >
                     {/* El video se mostrará aquí */}
+                    <div className="absolute inset-0 flex items-center justify-center text-whiteser opacity-50">
+                      <p>Posiciona el código de barras en el centro</p>
+                    </div>
                   </div>
-                  <div className="absolute inset-0 border-2 border-lightser border-dashed rounded-lg pointer-events-none"></div>
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-4/5 h-1/2 border-2 border-lightser border-dashed rounded-lg"></div>
+                  </div>
                 </div>
                 <button
                   onClick={stopScanner}
@@ -178,8 +244,8 @@ const Home: NextPage = () => {
                     />
                     <button
                       type="button"
-                      onClick={startScanner}
-                      className="bg-ser hover:bg-darkser text-whiteser font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightser shadow-md"
+                      onClick={handleScanButtonClick}
+                      className="bg-ser hover:bg-darkser text-whiteser font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-lightser shadow-md flex items-center"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -205,6 +271,18 @@ const Home: NextPage = () => {
                   ) : 'Buscar Paquete'}
                 </button>
               </form>
+            )}
+            
+            {cameraPermission === 'denied' && !scanning && (
+              <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded mb-4">
+                <p className="font-medium">Acceso a la cámara denegado. Por favor, activa los permisos en la configuración de tu navegador para usar el escáner.</p>
+                <button 
+                  onClick={requestCameraPermission}
+                  className="mt-2 bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-3 rounded-md text-sm"
+                >
+                  Intentar de nuevo
+                </button>
+              </div>
             )}
             
             {error && (
