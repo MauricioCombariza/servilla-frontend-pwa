@@ -65,7 +65,7 @@ return (
     </Link>
 
     {/* Botón de Rastreo guías */}
-    <Link href="/Aplicacion"> 
+    <Link href="/Paqueteria"> 
       <button className='bg-green-700 hover:bg-green-300 text-white hover:text-black px-4 py-2 rounded text-xl sm:text-2xl transition-colors duration-200'>
         Rastreo guías
       </button>

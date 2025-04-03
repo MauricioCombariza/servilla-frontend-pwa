@@ -34,6 +34,7 @@
     "lucide-react": "^0.451.0",
     "next": "14.2.5",
     "node-tesseract-ocr": "^2.2.1",
+    "papaparse": "^5.5.1",
     "path": "^0.12.7",
     "quagga": "^0.12.1",
     "react": "^18",

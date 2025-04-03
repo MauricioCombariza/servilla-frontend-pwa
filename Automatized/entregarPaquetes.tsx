@@ -78,6 +78,7 @@ const automateMachine = createMachine({
         CAJONERAS: 'cajoneras',
         PISTOLEO: 'pistoleo',
         MENUINVENTARIO: 'menu_inventario',
+        UPLOAD_ORDERS: 'upload_orders',
         ORDENES: 'ordenes',
         DINERO: 'dinero',
         WHATSAPP: 'whatsapp',
@@ -116,6 +117,13 @@ const automateMachine = createMachine({
       }
     },
     ordenes: {
+      on: {
+        START: 'modulos_admon',
+        CANCEL: 'modulos_admon',
+        INITIAL:'modulos',
+      }
+    },
+    upload_orders:{
       on: {
         START: 'modulos_admon',
         CANCEL: 'modulos_admon',

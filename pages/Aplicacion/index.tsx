@@ -93,6 +93,10 @@ const YourPage = () => {
       send({ type: 'CAJONERAS' });
     };
 
+    const upload_orders = () => {
+      send({ type: 'UPLOAD_ORDERS'});
+    };
+
     const nueva_orden = () => {
       send({ type: 'NUEVAORDEN' });
     };
@@ -257,7 +261,7 @@ const YourPage = () => {
             {current.matches('cambio_contrasena') && <CambioContrasena handleInitial={handleInitial} />}
             {current.matches('nueva_orden') && <NuevaOrden handleInitial={handleInitial} />} 
             {current.matches('ordenes') && <Ordenes order={order} id_cliente={id_cliente} handleInitial={handleInitial} setIdCliente={setIdCliente} setOrder={setOrder} handleFileChange={handleFileChange} handleUploadOrders={handleUploadOrdersBase} handleCancel={handleCancel} />}
-            {current.matches('modulos_admon') && <ModulosAdmon rol={rol} handleInitial={handleInitial} cajoneras={cajoneras} pistoleo={pistoleo} ordenes={ordenes} menu_inventario={menu_inventario} dinero={dinero} whatsapp={whatsapp} handleCancel={handleCancel}/>}
+            {current.matches('modulos_admon') && <ModulosAdmon rol={rol} handleInitial={handleInitial} upload_orders={upload_orders} cajoneras={cajoneras} pistoleo={pistoleo} ordenes={ordenes} menu_inventario={menu_inventario} dinero={dinero} whatsapp={whatsapp} handleCancel={handleCancel}/>}
             {current.matches('modulos_clientes') && <ModulosCientes rol={rol} handleInitial={handleInitial} nuevaOrden={nueva_orden} handleCancel={handleCancel}/>}
             {current.matches('datos') && <Datos paymentMethod={paymentMethod} handleInitial={handleInitial} setPaymentMethod={setPaymentMethod} guideNumber={guideNumber} handleCancel={handleCancel} setGuideNumber={setGuideNumber} send={send} />}
             {current.matches('nequi') && <Nequi consignee={consignee} handleInitial={handleInitial} setModuloSiguiente={setModuloSiguiente} setConsignee={setConsignee} value={value} setValue={setValue} handleFoto={handleFoto} handleDatos={handleDatos} handleCancel={handleCancel} />}
@@ -266,7 +270,7 @@ const YourPage = () => {
             {current.matches('sin_cobro') && <SinCobro setPaymentMethod={setPaymentMethod} handleInitial={handleInitial} consignee={consignee} setModuloSiguiente={setModuloSiguiente} setConsignee={setConsignee} handleFoto={handleFoto} handleDatos={handleDatos} handleCancel={handleCancel} />}
             {current.matches('otra') && <Otra consignee={consignee} handleInitial={handleInitial} setConsignee={setConsignee} entidad={entidad} setEntidad={setEntidad} value={value} setValue={setValue} handleFoto={handleFoto} handleDatos={handleDatos} handleCancel={handleCancel} />}
             {current.matches('nequi_efectivo') && <NequiEfectivo setModuloSiguiente={setModuloSiguiente} handleInitial={handleInitial} setPaymentMethod={setPaymentMethod} consignee={consignee} setConsignee={setConsignee} value={value} setValue={setValue} value1={value1} setValue1={setValue1} handleFoto={handleFoto} handleDatos={handleDatos} handleCancel={handleCancel} />}
-            {current.matches('foto') && <FotoModule handleCancel={handleCancel} handleInitial={handleInitial} handleFinalizar={handleFinalizar} />}
+            {current.matches('foto') && <FotoModule handleCancel={handleCancel} serial={guideNumber} handleInitial={handleInitial} handleFinalizar={handleFinalizar} />}
             {current.matches('dinero') && <Dinero username={username} handleInitial={handleInitial} handleVerificado={handleVerificado} handleCancel={handleCancel}/>}
             {current.matches('menu_inventario') && <MenuInventario handleCancel={handleCancel} inventarioClick={inventarioClick} inventarioTouch={inventarioTouch} handleInitial={handleInitial} onInventarioClick={onInventarioClick} onInventarioTouch={onInventarioTouch} onCrearInventarioClick={onCrearInventarioClick} onCrearInventarioTouch={onCrearInventarioTouch} />}
             {current.matches('consumo_por_orden') && <ConsumoPorOrden send={send} handleInitial={handleInitial} handleCancel={handleCancel}/>}
