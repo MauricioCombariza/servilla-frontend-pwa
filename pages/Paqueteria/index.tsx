@@ -7,7 +7,7 @@ import { Layout } from '@/components/Layout';
 import { startScanner } from '@/components/BarCodeScannerComponent/scan';
 
 interface PaqueteriaResult {
-  cod_sec: string;
+  sector: string;
   ruta: string;
 }
 
@@ -241,7 +241,7 @@ const Home: NextPage = () => {
                   <div className="space-y-3">
                     <div className="bg-lightser bg-opacity-50 p-4 rounded-lg">
                       <p className="text-sm text-darkser mb-1">Código de Sector:</p>
-                      <p className="font-bold text-xl">{result.cod_sec}</p>
+                      <p className="font-bold text-xl">{result.sector}</p>
                     </div>
                     <div className="bg-lightser bg-opacity-50 p-4 rounded-lg">
                       <p className="text-sm text-darkser mb-1">Ruta:</p>
