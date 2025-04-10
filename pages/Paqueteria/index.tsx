@@ -54,9 +54,9 @@ const Home: NextPage = () => {
     setError(null);
     try {
       const { data, error } = await supabase
-        .from('paqueteria')
-        .select('cod_sec, ruta')
-        .eq('serial', serial)
+        .from('paquetes')
+        .select('*')
+        .eq('serial_number', serial)
         .single();
 
       if (error) throw error;
