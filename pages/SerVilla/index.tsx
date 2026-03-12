@@ -1,4 +1,4 @@
-'use client';
+
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
@@ -296,9 +296,9 @@ export default function SerVilla() {
         <div className="sv-statement-inner">
           <div className="sv-stmt-kicker r">La promesa glocal</div>
           <p className="sv-stmt-text r">
-            "Cuando una marca global quiere llegar a Colombia, no necesita{' '}
+            &ldquo;Cuando una marca global quiere llegar a Colombia, no necesita{' '}
             <em>entender cada barrio.</em> Solo necesita a alguien que ya lo{' '}
-            <strong>vive, lo conoce y lo entrega.</strong>"
+            <strong>vive, lo conoce y lo entrega.</strong>&rdquo;
           </p>
           <div className="sv-stmt-split">
             <div className="sv-ss-item r">
